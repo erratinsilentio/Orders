@@ -12,6 +12,8 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import { Link } from "react-router-dom";
+import style from "./menu.module.css";
 
 const pages = ["Clients", "Orders", "Invoices"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -120,7 +122,20 @@ export function ResponsiveAppBar() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                <Link
+                  className={style.link}
+                  to={
+                    page === "Orders"
+                      ? "orders"
+                      : page === "Clients"
+                      ? "/clients"
+                      : page === "Invoices"
+                      ? "/invoices"
+                      : "/"
+                  }
+                >
+                  {page}
+                </Link>
               </Button>
             ))}
           </Box>
