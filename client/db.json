@@ -1,31 +1,25 @@
 {
   "clients": [
     {
-      "id": 2,
-      "imie": "Marian",
+      "imie": "Marianos",
       "nazwisko": "Kowalski",
       "ulica": "Wiśniowa",
-      "kod": "00-1111",
+      "kod": "00-111",
       "miasto": "Kraków",
       "region": "Zachodni",
+      "zdjecie": "",
       "telefon": "+48898990000",
-      "orders": [
-        {
-          "id": "1666",
-          "tytul": "Koszula",
-          "Ilosc": "1",
-          "opis": "W kratke"
-        }
-      ]
+      "orders": [],
+      "id": 2
     },
     {
-      "id": 3,
       "imie": "Józef",
-      "nazwisko": "Kowalski",
+      "nazwisko": "Kowalskiaaaa",
       "ulica": "Wiśniowa",
-      "kod": "00-1111",
+      "kod": "00-111",
       "miasto": "Kraków",
       "region": "Zachodni",
+      "zdjecie": "",
       "telefon": "+48777456789",
       "orders": [
         {
@@ -34,7 +28,8 @@
           "ilosc": "2",
           "opis": "Na plecy"
         }
-      ]
+      ],
+      "id": 3
     },
     {
       "id": 4,
@@ -88,6 +83,17 @@
       "zdjecie": "",
       "telefon": "+48111222333",
       "id": 6
+    },
+    {
+      "imie": "aleksander",
+      "nazwisko": "marianov",
+      "ulica": "super",
+      "kod": "01-111",
+      "miasto": "wluczengi",
+      "region": "",
+      "zdjecie": "",
+      "telefon": "+48999999999",
+      "id": 7
     }
   ],
   "orders": [

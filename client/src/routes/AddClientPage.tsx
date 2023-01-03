@@ -2,26 +2,10 @@ import { useFormik } from "formik";
 import { AddClientForm, addClientValidationSchema } from "../utils/clientSchema";
 import { FormInput } from "../components/form/formInput";
 import { addClient } from "../api/clients";
+import { ClientActionFormik } from "../utils/useFormik";
 
-//TODO: props edit albo add
 export const AddClientPage = () => {
-  const formik = useFormik<AddClientForm>({
-    initialValues: {
-      imie: "",
-      nazwisko: "",
-      ulica: "",
-      kod: "",
-      miasto: "",
-      region: "",
-      zdjecie: "",
-      telefon: "",
-    },
-    validationSchema: addClientValidationSchema,
-    onSubmit: (values) => {
-      addClient(values);
-      console.log(values);
-    },
-  });
+  const formik = ClientActionFormik("add");
 
   return (
     <form onSubmit={formik.handleSubmit}>

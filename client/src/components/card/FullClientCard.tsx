@@ -10,10 +10,10 @@ type Props = {
 export const FullClientCard: React.FC<Props> = ({ client }) => {
   return (
     <div className={style.container}>
-      {client.Zdjecie && <img src={client.Zdjecie} alt={client.Imie} />}
-      <p>{client.Imie + " " + client.Nazwisko}</p>
-      <p>{client.Miasto + " " + client.Kod}</p>
-      <p>{client.Telefon}</p>
+      {client.zdjecie && <img src={client.zdjecie} alt={client.imie} />}
+      <p>{client.imie + " " + client.nazwisko}</p>
+      <p>{client.miasto + " " + client.kod}</p>
+      <p>{client.telefon}</p>
       <p>zamówienia:</p>
       <button>
         <Link to={`/clients/${client.id}/edit`} state={client}>
