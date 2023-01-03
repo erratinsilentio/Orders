@@ -1,36 +1,40 @@
 import { useFormik } from "formik";
-import { yupSchema } from "../utils/clientSchema";
+import { AddClientForm, addClientValidationSchema } from "../utils/clientSchema";
 import { FormInput } from "../components/form/formInput";
+import { addClient } from "../api/clients";
 
+//TODO: props edit albo add
 export const AddClientPage = () => {
-  const formik = useFormik({
+  const formik = useFormik<AddClientForm>({
     initialValues: {
-      Imie: "",
-      Nazwisko: "",
-      Ulica: "",
-      Kod: "",
-      Miasto: "",
-      Region: "",
-      Zdjecie: "",
-      Telefon: "",
+      imie: "",
+      nazwisko: "",
+      ulica: "",
+      kod: "",
+      miasto: "",
+      region: "",
+      zdjecie: "",
+      telefon: "",
     },
-    validationSchema: yupSchema,
+    validationSchema: addClientValidationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      addClient(values);
+      console.log(values);
     },
   });
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <FormInput accessor="Imie" formik={formik} />
-      <FormInput accessor="Nazwisko" formik={formik} />
-      <FormInput accessor="Ulica" formik={formik} />
-      <FormInput accessor="Kod" formik={formik} />
-      <FormInput accessor="Miasto" formik={formik} />
-      <FormInput accessor="Region" formik={formik} />
-      <FormInput accessor="Zdjęcie" formik={formik} />
-      <FormInput accessor="Telefon" formik={formik} />
-      <button type="submit">Send</button>
+      {/* {Object.keys(formik.initialValues).map(el=>)} */}
+      <FormInput<AddClientForm> accessor="imie" formik={formik} />
+      <FormInput<AddClientForm> accessor="nazwisko" formik={formik} />
+      <FormInput<AddClientForm> accessor="ulica" formik={formik} />
+      <FormInput<AddClientForm> accessor="kod" formik={formik} />
+      <FormInput<AddClientForm> accessor="miasto" formik={formik} />
+      <FormInput<AddClientForm> accessor="region" formik={formik} />
+      <FormInput<AddClientForm> accessor="zdjecie" formik={formik} />
+      <FormInput<AddClientForm> accessor="telefon" formik={formik} />
+      <button>Send</button>
     </form>
   );
 };

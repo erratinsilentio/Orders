@@ -1,8 +1,23 @@
-import { FullDetailsCard } from "../components/card/FullDetailsCard";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { FullClientCard } from "../components/card/FullClientCard";
+import { useLocation, useParams } from "react-router-dom";
+import { getClient } from "../api/clients";
+import { Client } from "../data";
 
 export const ClientDetailsPage = () => {
-  let { state } = useLocation();
-  console.log(state);
-  return <FullDetailsCard client={state} />;
+  const [client, setClient] = useState<Client | null>(null);
+  const params = useParams();
+
+  useEffect(() => {
+    console.log(params.id);
+    if (!!params.id) {
+      getClient(params.id).then((data) => {
+        setClient(data);
+        console.log(client);
+      });
+    }
+  }, [params]);
+
+  if (!client) return <p>loading...</p>;
+  return <FullClientCard client={client} />;
 };

@@ -1,21 +1,21 @@
 export interface Order {
-  ID: string | number;
-  Tytul: string;
-  Opis?: string;
-  Ilosc: string | number;
+  id: string | number;
+  tytul: string;
+  opis: string;
+  ilosc: string | number;
 }
 
 export interface Client {
-  ID: string | number;
-  Imie: string;
-  Nazwisko: string;
-  Ulica: string;
-  Kod?: string;
-  Miasto: string;
-  Region?: string;
-  Zdjecie?: string;
-  Telefon?: string;
-  Orders?: Order[];
+  id?: string | number;
+  imie: string;
+  nazwisko: string;
+  ulica: string;
+  kod?: string;
+  miasto: string;
+  region?: string;
+  zdjecie?: string;
+  telefon: string;
+  orders?: Order[];
 }
 
 export const clientData: Client[] = [

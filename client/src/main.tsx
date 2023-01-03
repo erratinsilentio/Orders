@@ -38,19 +38,19 @@ const router = createBrowserRouter([
         element: <EditClientPage />,
       },
       {
-        path: "orders/",
+        path: "/orders",
         element: <OrdersPage />,
       },
       {
-        path: "orders/:id",
+        path: "/orders/:id",
         element: <OrderDetailsPage />,
       },
       {
-        path: "orders/add",
+        path: "/orders/add",
         element: <AddOrderPage />,
       },
       {
-        path: "invoices/",
+        path: "/invoices/",
         element: <InvoicesPage />,
       },
     ],

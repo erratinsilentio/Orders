@@ -1,0 +1,137 @@
+{
+  "clients": [
+    {
+      "id": 2,
+      "imie": "Marian",
+      "nazwisko": "Kowalski",
+      "ulica": "Wiśniowa",
+      "kod": "00-1111",
+      "miasto": "Kraków",
+      "region": "Zachodni",
+      "telefon": "+48898990000",
+      "orders": [
+        {
+          "id": "1666",
+          "tytul": "Koszula",
+          "Ilosc": "1",
+          "opis": "W kratke"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "imie": "Józef",
+      "nazwisko": "Kowalski",
+      "ulica": "Wiśniowa",
+      "kod": "00-1111",
+      "miasto": "Kraków",
+      "region": "Zachodni",
+      "telefon": "+48777456789",
+      "orders": [
+        {
+          "id": "1991",
+          "tytul": "Plecak",
+          "ilosc": "2",
+          "opis": "Na plecy"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "imie": "Andrzej",
+      "nazwisko": "Kowalski",
+      "ulica": "Wiśniowa",
+      "kod": "00-1111",
+      "miasto": "Kraków",
+      "region": "Zachodni",
+      "telefon": "+48847948735",
+      "orders": [
+        {
+          "id": "1863",
+          "tytul": "Gitara",
+          "ilosc": "4",
+          "opis": "Wow"
+        },
+        {
+          "id": "1866",
+          "tytul": "Cygaro",
+          "ilosc": "14",
+          "opis": "Uwaga"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "imie": "Mariusz",
+      "nazwisko": "Kowalski",
+      "ulica": "Wiśniowa",
+      "kod": "00-1111",
+      "miasto": "Kraków",
+      "region": "Zachodni",
+      "telefon": "+48119938028",
+      "orders": [
+        {
+          "id": "1932",
+          "tytul": "Spodnie",
+          "ilosc": "5",
+          "opis": "Wygodne"
+        }
+      ]
+    },
+    {
+      "imie": "kacper",
+      "nazwisko": "kondracki",
+      "ulica": "kakakakaka",
+      "kod": "01-111",
+      "miasto": "warszau",
+      "region": "mazowieckie",
+      "zdjecie": "",
+      "telefon": "+48111222333",
+      "id": 6
+    }
+  ],
+  "orders": [
+    {
+      "id": "1932",
+      "tytul": "Spodnie",
+      "ilosc": "5",
+      "opis": "Wygodne",
+      "telefon": "+48119938028"
+    },
+    {
+      "id": "1863",
+      "tytul": "Gitara",
+      "ilosc": "4",
+      "opis": "Wow",
+      "telefon": "+48847948735"
+    },
+    {
+      "id": "1866",
+      "tytul": "Cygaro",
+      "ilosc": "14",
+      "opis": "Uwaga",
+      "telefon": "+48847948735"
+    },
+    {
+      "id": "1991",
+      "tytul": "Plecak",
+      "ilosc": "2",
+      "opis": "Na plecy",
+      "telefon": "+48777456789"
+    },
+    {
+      "id": "1666",
+      "tytul": "Koszula",
+      "ilosc": "1",
+      "opis": "W kratke",
+      "telefon": "+48898990000"
+    },
+    {
+      "id": "1632",
+      "tytul": "Buty",
+      "ilosc": "1",
+      "opis": "Wygodne",
+      "telefon": "+48123456789"
+    }
+  ]
+}

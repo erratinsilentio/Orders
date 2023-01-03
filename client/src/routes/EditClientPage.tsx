@@ -1,11 +1,13 @@
 import { useFormik } from "formik";
 import { FormInput } from "../components/form/formInput";
-import { yupSchema } from "../utils/clientSchema";
-import { useLocation, Link } from "react-router-dom";
+import { addClientValidationSchema } from "../utils/clientSchema";
+import { useLocation, Link, useParams } from "react-router-dom";
+import { updateClient } from "../api/clients";
 
 export const EditClientPage = () => {
   const { state } = useLocation();
-  console.log(state);
+  const params = useParams();
+
   const formik = useFormik({
     initialValues: {
       Imie: state.Imie || "",
@@ -17,9 +19,11 @@ export const EditClientPage = () => {
       Zdjecie: state.Zdjecie || "",
       Telefon: state.Telefon || "",
     },
-    validationSchema: yupSchema,
+    validationSchema: addClientValidationSchema,
     onSubmit: (values) => {
+      // updateClient(String(params.id), values);
       alert(JSON.stringify(values, null, 2));
+      console.log("kkkkkkkkk");
     },
   });
 
@@ -31,11 +35,11 @@ export const EditClientPage = () => {
       <FormInput accessor="Kod" formik={formik} />
       <FormInput accessor="Miasto" formik={formik} />
       <FormInput accessor="Region" formik={formik} />
-      <FormInput accessor="Zdjęcie" formik={formik} />
+      <FormInput accessor="Zdjecie" formik={formik} />
       <FormInput accessor="Telefon" formik={formik} />
       <button type="submit">Update</button>
-      <Link to={`/clients/${state.ID}`} state={state}>
-        <button type="submit">Cancel</button>
+      <Link to={`/clients/${params.id}`} state={state}>
+        <button>Cancel</button>
       </Link>
     </form>
   );
