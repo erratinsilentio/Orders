@@ -11,6 +11,7 @@ import { OrdersPage } from "./routes/OrdersPage";
 import { OrderDetailsPage } from "./routes/OrderDetailsPage";
 import { AddOrderPage } from "./routes/AddOrderPage";
 import { InvoicesPage } from "./routes/InvoicesPage";
+import { clientData } from "./data";
 // create error
 // create loading
 

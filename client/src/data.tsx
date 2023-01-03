@@ -1,3 +1,10 @@
+export interface Order {
+  ID: string | number;
+  Tytul: string;
+  Opis?: string;
+  Ilosc: string | number;
+}
+
 export interface Client {
   ID: string | number;
   Imie: string;
@@ -8,6 +15,7 @@ export interface Client {
   Region?: string;
   Zdjecie?: string;
   Telefon?: string;
+  Orders?: Order[];
 }
 
 export const clientData: Client[] = [
@@ -20,6 +28,7 @@ export const clientData: Client[] = [
     Miasto: "Kraków",
     Region: "Zachodni",
     Telefon: "+48123456789",
+    Orders: [{ ID: "1632", Tytul: "Buty", Ilosc: "1", Opis: "Wygodne" }],
   },
   {
     ID: 2,
@@ -29,7 +38,8 @@ export const clientData: Client[] = [
     Kod: "00-1111",
     Miasto: "Kraków",
     Region: "Zachodni",
-    Telefon: "+48123456789",
+    Telefon: "+48898990000",
+    Orders: [{ ID: "1666", Tytul: "Koszula", Ilosc: "1", Opis: "W kratke" }],
   },
   {
     ID: 3,
@@ -39,7 +49,8 @@ export const clientData: Client[] = [
     Kod: "00-1111",
     Miasto: "Kraków",
     Region: "Zachodni",
-    Telefon: "+48123456789",
+    Telefon: "+48777456789",
+    Orders: [{ ID: "1991", Tytul: "Plecak", Ilosc: "2", Opis: "Na plecy" }],
   },
   {
     ID: 4,
@@ -49,7 +60,11 @@ export const clientData: Client[] = [
     Kod: "00-1111",
     Miasto: "Kraków",
     Region: "Zachodni",
-    Telefon: "+48123456789",
+    Telefon: "+48847948735",
+    Orders: [
+      { ID: "1863", Tytul: "Gitara", Ilosc: "4", Opis: "Wow" },
+      { ID: "1866", Tytul: "Cygaro", Ilosc: "14", Opis: "Uwaga" },
+    ],
   },
   {
     ID: 5,
@@ -59,6 +74,7 @@ export const clientData: Client[] = [
     Kod: "00-1111",
     Miasto: "Kraków",
     Region: "Zachodni",
-    Telefon: "+48123456789",
+    Telefon: "+48119938028",
+    Orders: [{ ID: "1932", Tytul: "Spodnie", Ilosc: "5", Opis: "Wygodne" }],
   },
 ];
