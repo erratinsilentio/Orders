@@ -1,6 +1,33 @@
 .container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    padding: 50px;
+    /* outline: 1px solid black; */
+}
+.left{
+    width: 50px;
+    padding: 15px;
+    min-height: 100%;
+    display: flex;
+    align-items: flex-start;
+}
+
+.right{
+    padding-left: 20px;
+    border-left: 1px solid grey;
+    width: 300px;
+    height: 100%;
+    /* outline: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons{
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    /* outline: 1px solid black; */
 }
