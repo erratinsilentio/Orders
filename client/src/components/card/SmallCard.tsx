@@ -1,7 +1,8 @@
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import Avatar from "@mui/material/Avatar";
-import { red } from "@mui/material/colors";
+import { grey, red } from "@mui/material/colors";
+import style from "./smallCard.module.css";
 
 type ClientProps = {
   imie: string;
@@ -11,18 +12,26 @@ type ClientProps = {
   telefon?: string | number;
 };
 
-export const ClientCard: React.FC<ClientProps> = ({ imie, nazwisko, zdjecie, miasto, telefon }) => {
+export const SmallClientCard: React.FC<ClientProps> = ({
+  imie,
+  nazwisko,
+  zdjecie,
+  miasto,
+  telefon,
+}) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card style={{ background: "#2e3b55" }}>
       <CardHeader
+        className={style.container}
         avatar={
           <Avatar
-            sx={{ bgcolor: red[500] }}
+            style={{ background: "#2e3b55" }}
+            sx={{ bgcolor: grey[500] }}
             aria-label="recipe"
             alt={imie + " " + nazwisko}
             src={zdjecie}
           >
-            R
+            A
           </Avatar>
         }
         title={imie + " " + nazwisko}
