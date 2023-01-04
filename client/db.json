@@ -32,13 +32,13 @@
       "id": 3
     },
     {
-      "id": 4,
       "imie": "Andrzej",
-      "nazwisko": "Kowalski",
+      "nazwisko": "Kowal",
       "ulica": "Wiśniowa",
-      "kod": "00-1111",
+      "kod": "00-111",
       "miasto": "Kraków",
       "region": "Zachodni",
+      "zdjecie": "",
       "telefon": "+48847948735",
       "orders": [
         {
@@ -53,7 +53,8 @@
           "ilosc": "14",
           "opis": "Uwaga"
         }
-      ]
+      ],
+      "id": 4
     },
     {
       "id": 5,
