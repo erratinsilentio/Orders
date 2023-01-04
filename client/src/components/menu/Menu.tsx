@@ -118,26 +118,15 @@ export function ResponsiveAppBar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                <Link
-                  className={style.link}
-                  to={
-                    page === "Orders"
-                      ? "orders"
-                      : page === "Clients"
-                      ? "/clients"
-                      : page === "Invoices"
-                      ? "/invoices"
-                      : "/"
-                  }
+              <Link className={style.link} to={page.toLowerCase()}>
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
                 >
                   {page}
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             ))}
           </Box>
 

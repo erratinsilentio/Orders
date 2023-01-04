@@ -1,5 +1,6 @@
 import TextField from "@mui/material/TextField";
 import { FormikProps } from "formik";
+import style from "./formInput.styles.css";
 
 export function FormInput<T>({
   formik,
@@ -11,6 +12,7 @@ export function FormInput<T>({
   return (
     <div>
       <TextField
+        style={{ width: "300px" }}
         error={Boolean(formik.touched[accessor] && formik.errors[accessor])}
         helperText={
           formik.touched[accessor] && formik.errors[accessor]

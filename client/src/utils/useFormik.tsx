@@ -5,7 +5,7 @@ import { Client } from "../data";
 
 type Action = "add" | "update";
 
-export const ClientActionFormik = (action: Action, client: Client) => {
+export const ClientActionFormik = (action: Action, client?: Client) => {
   if (action === "add") {
     const formik = useFormik<AddClientForm>({
       initialValues: {
@@ -21,11 +21,13 @@ export const ClientActionFormik = (action: Action, client: Client) => {
       validationSchema: addClientValidationSchema,
       onSubmit: (values) => {
         addClient(values);
+        alert("Client added!");
       },
     });
-
     return formik;
-  } else {
+  }
+
+  if (action === "update" && client) {
     const formik = useFormik({
       initialValues: {
         imie: client.imie || "",
