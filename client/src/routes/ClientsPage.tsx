@@ -20,7 +20,7 @@ export const ClientsPage = () => {
     <div className={style.container}>
       <section className={style.action}>
         <Button variant="outlined" style={{ borderColor: "#2e3b55", marginRight: "25px" }}>
-          <Link to={"/clients/add"} className={style.link}>
+          <Link to={"/clients/add"} className={`${style.link} ${style.addLink}`}>
             Add Client
           </Link>
         </Button>
