@@ -17,7 +17,7 @@ export function DataBox({ children }) {
           borderColor: (theme) => (theme.palette.mode === "dark" ? "grey.800" : "grey.300"),
           borderRadius: 2,
           fontSize: "0.875rem",
-          fontWeight: "700",
+          fontWeight: "300",
         }}
       >
         {children}

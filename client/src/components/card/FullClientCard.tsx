@@ -43,7 +43,7 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
           <p>{client.telefon}</p>
           <p>
             {" "}
-            <Accordion>
+            <Accordion className={style.accord}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
@@ -54,7 +54,7 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
               <AccordionDetails>
                 <Typography>
                   <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <Table sx={{ minWidth: 250 }} aria-label="simple table">
                       <TableHead>
                         <TableRow>
                           <TableCell>Nr zamówienia</TableCell>
@@ -80,11 +80,11 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
             </Accordion>
           </p>
           <div className={style.buttons}>
-            <Link to={`/clients/${client.id}/edit`} state={client}>
+            <Link to={`/clients/${client.id}/edit`} state={client} className={style.link}>
               <Button variant="outlined">Edit</Button>
             </Link>
 
-            <Link to={"/clients"}>
+            <Link to={"/clients"} className={style.link}>
               <Button onClick={() => deleteClient(client.id)} variant="outlined">
                 DELETE
               </Button>

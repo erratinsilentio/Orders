@@ -28,6 +28,7 @@
 .link{
     text-decoration: none;
     color: initial;
+    margin-bottom: 10px;
 }
 
 @media (max-width: 650px) {

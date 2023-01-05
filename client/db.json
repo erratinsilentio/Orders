@@ -1,18 +1,6 @@
 {
   "clients": [
     {
-      "imie": "Marianos",
-      "nazwisko": "Kowalski",
-      "ulica": "Wiśniowa",
-      "kod": "00-111",
-      "miasto": "Kraków",
-      "region": "Zachodni",
-      "zdjecie": "",
-      "telefon": "+48898990000",
-      "orders": [],
-      "id": 2
-    },
-    {
       "imie": "Józef",
       "nazwisko": "Kowalskiaaaa",
       "ulica": "Wiśniowa",
