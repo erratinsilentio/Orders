@@ -60,7 +60,7 @@ export const updateClientsOrders = async (tel, order) => {
   console.log(res);
   res.orders = [
     ...res.orders,
-    { id: order.id, tytul: order.Tytul, ilosc: order.Ilosc, opis: order.Opis },
+    { id: order.id, tytul: order.tytul, ilosc: order.ilosc, opis: order.opis },
   ];
 
   const response = await fetch(`http://localhost:3000/clients/${res.id}`, {

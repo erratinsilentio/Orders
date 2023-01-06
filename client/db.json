@@ -17,16 +17,10 @@
           "opis": "Na plecy"
         },
         {
-          "id": "BwXYrDD",
+          "id": "OsRUwvV",
           "tytul": "zamowienie",
-          "ilosc": "1",
-          "opis": "kakakakakakakakakakakakakak"
-        },
-        {
-          "id": "qz_Oeep",
-          "tytul": "zamowienie",
-          "ilosc": "1",
-          "opis": "kakakakakakakakakakakakakak"
+          "ilosc": "777",
+          "opis": "to moj szczesliwy traf"
         }
       ],
       "id": 3
@@ -152,18 +146,11 @@
       "telefon": "+48123456789"
     },
     {
-      "Klient": "+48777456789",
-      "Tytul": "zamowienie",
-      "Opis": "kakakakakakakakakakakakakak",
-      "Ilosc": "1",
-      "id": "wm0gD8p"
-    },
-    {
-      "Klient": "+48777456789",
-      "Tytul": "zamowienie",
-      "Opis": "kakakakakakakakakakakakakak",
-      "Ilosc": "1",
-      "id": "qz_Oeep"
+      "telefon": "+48777456789",
+      "tytul": "zamowienie",
+      "opis": "to moj szczesliwy traf",
+      "ilosc": "777",
+      "id": "OsRUwvV"
     }
   ]
 }

@@ -15,25 +15,25 @@ export const AddOrderPage = () => {
 
   const formik = useFormik({
     initialValues: {
-      Klient: "",
-      Tytul: "",
-      Opis: "",
-      Ilosc: "",
+      telefon: "",
+      tytul: "",
+      opis: "",
+      ilosc: "",
     },
     validationSchema: orderSchema,
     onSubmit: (values) => {
-      console.log(values.Klient);
+      console.log(values.telefon);
       alert(JSON.stringify(values, null, 2));
-      addOrder(values).then((order) => updateClientsOrders(values.Klient, order));
+      addOrder(values).then((order) => updateClientsOrders(values.telefon, order));
     },
   });
   if (!clients) return <p>loading...</p>;
   return (
     <form onSubmit={formik.handleSubmit}>
-      <FormSelect accessor="Klient" formik={formik} data={clients} />
-      <FormInput accessor="Tytul" formik={formik} />
-      <FormInput accessor="Ilosc" formik={formik} />
-      <FormInput accessor="Opis" formik={formik} />
+      <FormSelect accessor="telefon" formik={formik} data={clients} />
+      <FormInput accessor="tytul" formik={formik} />
+      <FormInput accessor="ilosc" formik={formik} />
+      <FormInput accessor="opis" formik={formik} />
       <button type="submit">Send</button>
     </form>
   );
