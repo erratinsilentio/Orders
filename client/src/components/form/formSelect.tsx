@@ -28,8 +28,8 @@ export const FormSelect: React.FC<Props> = ({ accessor, formik, data }) => {
           value={formik.values[accessor]}
         >
           {data.map((client) => (
-            <MenuItem key={client.ID} value={client.ID}>
-              {client.Imie + " " + client.Nazwisko}
+            <MenuItem key={client.telefon} value={client.telefon}>
+              {client.telefon}
             </MenuItem>
           ))}
         </Select>

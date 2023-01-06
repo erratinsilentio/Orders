@@ -3,6 +3,7 @@ export interface Order {
   tytul: string;
   opis: string;
   ilosc: string | number;
+  telefon: string;
 }
 
 export interface Client {
