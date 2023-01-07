@@ -5,6 +5,8 @@ import { FormSelect } from "../components/form/formSelect";
 import { useState, useEffect } from "react";
 import { getAllClients, updateClientsOrders } from "../api/clients";
 import { addOrder } from "../api/orders";
+import Button from "@mui/material/Button";
+import style from "../styles/addOrder.module.css";
 
 export const AddOrderPage = () => {
   const [clients, setClients] = useState(null);
@@ -29,12 +31,17 @@ export const AddOrderPage = () => {
   });
   if (!clients) return <p>loading...</p>;
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <FormSelect accessor="telefon" formik={formik} data={clients} />
-      <FormInput accessor="tytul" formik={formik} />
-      <FormInput accessor="ilosc" formik={formik} />
-      <FormInput accessor="opis" formik={formik} />
-      <button type="submit">Send</button>
-    </form>
+    <div className={style.container}>
+      {" "}
+      <form onSubmit={formik.handleSubmit} className={style.form}>
+        <FormSelect accessor="telefon" formik={formik} data={clients} className={style.input} />
+        <FormInput accessor="tytul" formik={formik} className={style.input} />
+        <FormInput accessor="ilosc" formik={formik} className={style.input} />
+        <FormInput accessor="opis" formik={formik} className={style.input} />
+        <Button type="submit" className={style.button} variant="outlined">
+          Send
+        </Button>
+      </form>
+    </div>
   );
 };
