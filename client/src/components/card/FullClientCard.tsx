@@ -17,12 +17,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { formatName } from "../../utils/formatName";
 
 type Props = {
   client: Client;
 };
 
 export const FullClientCard: React.FC<Props> = ({ client }) => {
+  if (!client) return <p>loading...</p>;
   return (
     <DataBox className={style.box}>
       <div className={style.container}>
@@ -37,7 +39,7 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
           </Avatar>
         </div>
         <div className={style.right}>
-          <p>{client.imie + " " + client.nazwisko}</p>
+          <p>{formatName(client)}</p>
           <p>{"ul. " + client.ulica}</p>
           <p>{client.miasto + " " + client.kod}</p>
           <p>{client.telefon}</p>
