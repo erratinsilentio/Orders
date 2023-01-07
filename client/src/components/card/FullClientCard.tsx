@@ -18,6 +18,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { formatName } from "../../utils/formatName";
+import { formatPhone } from "../../utils/formatPhone";
 
 type Props = {
   client: Client;
@@ -42,7 +43,7 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
           <p>{formatName(client)}</p>
           <p>{"ul. " + client.ulica}</p>
           <p>{client.miasto + " " + client.kod}</p>
-          <p>{client.telefon}</p>
+          <p>{formatPhone(client)}</p>
           <p>
             {" "}
             <Accordion className={style.accord}>
