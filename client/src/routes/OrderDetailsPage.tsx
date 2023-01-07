@@ -3,6 +3,7 @@ import style from "../styles/orderDetails.module.css";
 import { getOrder } from "../api/orders";
 import { getAllClients, getClientByTelephone } from "../api/clients";
 import { useEffect, useState } from "react";
+import { FullOrderCard } from "../components/orders/OrderDetailsCard";
 
 export const OrderDetailsPage = () => {
   const [order, setOrder] = useState(null);
@@ -22,10 +23,7 @@ export const OrderDetailsPage = () => {
 
   return (
     <div className={style.container}>
-      <p>{<Link to={`/clients/${client.id}`}>{client.imie + " " + client.nazwisko}</Link>}</p>
-      <p>{order.tytul}</p>
-      <p>{order.ilosc}</p>
-      <p>{order.opis}</p>
+      <FullOrderCard order={order} client={client} />
     </div>
   );
 };
