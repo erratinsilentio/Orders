@@ -2,18 +2,27 @@ import { useFormik } from "formik";
 import { FormInput } from "../components/form/formInput";
 import { addClientValidationSchema, AddClientForm } from "../utils/clientSchema";
 import { useLocation, Link, useParams } from "react-router-dom";
-import { updateClient } from "../api/clients";
+import { getClient, updateClient } from "../api/clients";
 import { ClientActionFormik } from "../utils/useFormik";
 import Button from "@mui/material/Button";
 import style from "../styles/editClient.module.css";
+import { useEffect, useState } from "react";
+import { Client } from "../data";
 
 export const EditClientPage = () => {
-  const { state } = useLocation();
+  const [client, setClient] = useState(null);
+
   const params = useParams();
 
-  const formik = ClientActionFormik("update", state);
-  if (!formik) return <p>loading...</p>;
+  useEffect(() => {
+    getClient(params.id).then((data) => setClient(data));
+  }, []);
 
+  if (!client) return <p>loading...</p>;
+
+  const formik = ClientActionFormik("update", client);
+
+  console.log("siema", client);
   return (
     <form onSubmit={formik.handleSubmit} className={style.form}>
       <section className={style.inputs}>
