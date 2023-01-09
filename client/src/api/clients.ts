@@ -1,9 +1,4 @@
-import { Order } from "../data";
-
-type Client = {
-  id: string;
-  imie: string;
-};
+import { Order, Client } from "../data";
 
 export const getClient = async (id: string | number) => {
   const response = await fetch(`http://localhost:3000/clients/${id}`);
