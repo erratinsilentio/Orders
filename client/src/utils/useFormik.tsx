@@ -10,20 +10,33 @@ type Action = "add" | "update";
 export const ClientActionFormik = (action: Action, client?: Client) => {
   if (action === "add") {
     const formik = useFormik<AddClientForm>({
-      initialValues: {
-        imie: "",
-        nazwisko: "",
-        ulica: "",
-        kod: "",
-        miasto: "",
-        region: "",
-        zdjecie: "",
-        telefon: "",
-      },
+      initialValues:
+        action === "add"
+          ? {
+              imie: "",
+              nazwisko: "",
+              ulica: "",
+              kod: "",
+              miasto: "",
+              region: "",
+              zdjecie: "",
+              telefon: "",
+            }
+          : {
+              imie: client.imie || "",
+              nazwisko: client.nazwisko || "",
+              ulica: client.ulica || "",
+              kod: client.kod || "",
+              miasto: client.miasto || "",
+              region: client.region || "",
+              zdjecie: client.zdjecie || "",
+              telefon: client.telefon || "",
+              orders: client.orders || [],
+            },
       validationSchema: addClientValidationSchema,
       onSubmit: (values) => {
-        addClient(values);
-        alert("Client added!");
+        action === "add" ? addClient(values) : updateClient(values);
+        action === "add" ? alert("Client added!") : alert("Client updated!");
       },
     });
     return formik;
