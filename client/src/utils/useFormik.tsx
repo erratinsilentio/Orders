@@ -2,6 +2,8 @@ import { useFormik } from "formik";
 import { AddClientForm, addClientValidationSchema } from "./clientSchema";
 import { addClient, updateClient } from "../api/clients";
 import { Client } from "../data";
+import { loginForm, registerForm } from "./userSchema";
+import { loginValidationSchema, registerValidationSchema } from "./userSchema";
 
 type Action = "add" | "update";
 
@@ -48,4 +50,33 @@ export const ClientActionFormik = (action: Action, client?: Client) => {
     });
     return formik;
   }
+};
+
+export const loginActionFormik = () => {
+  const formik = useFormik<loginForm>({
+    initialValues: {
+      login: "",
+      password: "",
+    },
+    validationSchema: loginValidationSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+  return formik;
+};
+
+export const registerActionFormik = () => {
+  const formik = useFormik<registerForm>({
+    initialValues: {
+      email: "",
+      login: "",
+      password: "",
+    },
+    validationSchema: registerValidationSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+  return formik;
 };
