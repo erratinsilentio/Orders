@@ -1,42 +1,67 @@
-import { useFormik } from "formik";
 import { FormInput } from "../components/form/formInput";
-import { yupSchema } from "../utils/clientSchema";
-import { useLocation, Link } from "react-router-dom";
+import {
+  addClientValidationSchema,
+  AddClientForm,
+} from "../utils/clientSchema";
+import { Link, useParams } from "react-router-dom";
+import { getClient } from "../api/clients";
+import { ClientActionFormik } from "../utils/useFormik";
+import Button from "@mui/material/Button";
+import style from "../styles/editClient.module.css";
+import { useEffect, useState } from "react";
+import { Client } from "../data";
 
 export const EditClientPage = () => {
-  const { state } = useLocation();
-  console.log(state);
-  const formik = useFormik({
-    initialValues: {
-      Imie: state.Imie || "",
-      Nazwisko: state.Nazwisko || "",
-      Ulica: state.Ulica || "",
-      Kod: state.Kod || "",
-      Miasto: state.Miasto || "",
-      Region: state.Region || "",
-      Zdjecie: state.Zdjecie || "",
-      Telefon: state.Telefon || "",
-    },
-    validationSchema: yupSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
+  const [client, setClient] = useState<Client | null>(null);
+  const params = useParams();
 
+  useEffect(() => {
+    console.log(params.id);
+    if (!!params.id) {
+      getClient(params.id).then((data) => {
+        setClient(data);
+        console.log(data);
+      });
+    }
+  }, [params]);
+
+  if (!client) return <p>loading...</p>;
+
+  const formik = ClientActionFormik("update", client);
+
+  if (!formik) return <p>loading...</p>;
+
+  console.log("siema", client);
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <FormInput accessor="Imie" formik={formik} />
-      <FormInput accessor="Nazwisko" formik={formik} />
-      <FormInput accessor="Ulica" formik={formik} />
-      <FormInput accessor="Kod" formik={formik} />
-      <FormInput accessor="Miasto" formik={formik} />
-      <FormInput accessor="Region" formik={formik} />
-      <FormInput accessor="Zdjęcie" formik={formik} />
-      <FormInput accessor="Telefon" formik={formik} />
-      <button type="submit">Update</button>
-      <Link to={`/clients/${state.ID}`} state={state}>
-        <button type="submit">Cancel</button>
-      </Link>
+    <form onSubmit={formik.handleSubmit} className={style.form}>
+      <section className={style.inputs}>
+        {Object.keys(formik.initialValues).map(
+          (el) =>
+            el !== "orders" && (
+              <FormInput<AddClientForm>
+                accessor={el}
+                formik={formik}
+                key={el}
+              />
+            )
+        )}
+      </section>
+      <section className={style.buttons}>
+        <Link to={`/clients/${params.id}`} className={style.link}>
+          <Button
+            onClick={formik.handleSubmit}
+            variant="outlined"
+            className={style.btn}
+          >
+            Update
+          </Button>
+        </Link>
+        <Link to={`/clients/${params.id}`} className={style.link}>
+          <Button variant="outlined" className={style.btn}>
+            Cancel
+          </Button>
+        </Link>
+      </section>
     </form>
   );
 };

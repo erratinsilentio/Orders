@@ -1,27 +1,49 @@
 import { Link } from "react-router-dom";
 import style from "../styles/clients.module.css";
-import { ClientCard } from "../components/card/Card";
-import { clientData } from "../data";
+import { SmallClientCard } from "../components/card/SmallClientCard";
+import { Client } from "../data";
+import { getAllClients } from "../api/clients";
+import { useState, useEffect } from "react";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 
 export const ClientsPage = () => {
+  const [clients, setClients] = useState<Client[] | null>(null);
+
+  useEffect(() => {
+    getAllClients().then((response) => setClients(response));
+  }, []);
+
+  if (!clients) return <p>loading...</p>;
+
   return (
     <div className={style.container}>
-      {" "}
-      <button>
-        <Link to={"/clients/add"}>Add Client</Link>
-      </button>
-      {clientData.map((client) => (
-        <Link to={`/clients/${client.ID}`} state={client} className={style.link} key={client.ID}>
-          <ClientCard
-            key={client.ID}
-            imie={client.Imie}
-            nazwisko={client.Nazwisko}
-            zdjecie={client.Zdjecie}
-            miasto={client.Miasto}
-            telefon={client.Telefon}
-          />
-        </Link>
-      ))}
+      <section className={style.action}>
+        <Button
+          variant="outlined"
+          style={{ borderColor: "#2e3b55", marginRight: "25px" }}
+        >
+          <Link
+            to={"/clients/add"}
+            className={`${style.link} ${style.addLink}`}
+          >
+            Add Client
+          </Link>
+        </Button>
+        <TextField id="outlined-basic" label="Search" variant="outlined" />
+      </section>
+      <section className={style.cards}>
+        {clients.map((client) => (
+          <Link
+            to={`/clients/${client.id}`}
+            state={client}
+            className={style.link}
+            key={client.id}
+          >
+            <SmallClientCard key={client.id} client={client} />
+          </Link>
+        ))}
+      </section>
     </div>
   );
 };

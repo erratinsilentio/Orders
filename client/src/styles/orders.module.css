@@ -3,3 +3,11 @@
     flex-direction: column;
 
 }
+
+.link{
+    text-decoration: none;
+    color: initial;
+    margin: 10px;
+
+
+}

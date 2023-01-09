@@ -11,7 +11,7 @@ import { OrdersPage } from "./routes/OrdersPage";
 import { OrderDetailsPage } from "./routes/OrderDetailsPage";
 import { AddOrderPage } from "./routes/AddOrderPage";
 import { InvoicesPage } from "./routes/InvoicesPage";
-import { clientData } from "./data";
+import { RegisterPage } from "./routes/RegisterPage";
 // create error
 // create loading
 
@@ -21,6 +21,10 @@ const router = createBrowserRouter([
     element: <App />,
     // errorElement: <ErrorPage />,
     children: [
+      {
+        path: "/register",
+        element: <RegisterPage />,
+      },
       {
         path: "/clients",
         element: <ClientsPage />,
@@ -38,19 +42,19 @@ const router = createBrowserRouter([
         element: <EditClientPage />,
       },
       {
-        path: "orders/",
+        path: "/orders",
         element: <OrdersPage />,
       },
       {
-        path: "orders/:id",
+        path: "/orders/:id",
         element: <OrderDetailsPage />,
       },
       {
-        path: "orders/add",
+        path: "/orders/add",
         element: <AddOrderPage />,
       },
       {
-        path: "invoices/",
+        path: "/invoices/",
         element: <InvoicesPage />,
       },
     ],
