@@ -1,9 +1,11 @@
+import { Order } from "../data";
+
 type Client = {
   id: string;
   imie: string;
 };
 
-export const getClient = async (id: string) => {
+export const getClient = async (id: string | number) => {
   const response = await fetch(`http://localhost:3000/clients/${id}`);
   const data = await response.json();
   console.log(data);
@@ -36,7 +38,7 @@ export const addClient = async (client: Omit<Client, "id">) => {
   return data as Client;
 };
 
-export const deleteClient = async (id: string) => {
+export const deleteClient = async (id: string | number) => {
   const response = await fetch(`http://localhost:3000/clients/${id}`, {
     method: "DELETE",
   });
@@ -44,7 +46,7 @@ export const deleteClient = async (id: string) => {
   console.log(data);
 };
 
-export const updateClient = async (id: string, client: Client) => {
+export const updateClient = async (id: string | number, client: Client) => {
   const response = await fetch(`http://localhost:3000/clients/${id}`, {
     method: "PUT",
     headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -54,7 +56,7 @@ export const updateClient = async (id: string, client: Client) => {
   console.log(data);
 };
 
-export const updateClientsOrders = async (tel, order) => {
+export const updateClientsOrders = async (tel: string, order: Order) => {
   const res = await getClientByTelephone(tel);
 
   console.log(res);

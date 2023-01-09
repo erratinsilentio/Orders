@@ -3,22 +3,10 @@ import CardHeader from "@mui/material/CardHeader";
 import Avatar from "@mui/material/Avatar";
 import { red } from "@mui/material/colors";
 import style from "./smallCard.module.css";
+import { Client } from "../../data";
+import { formatName } from "../../utils/formatName";
 
-type ClientProps = {
-  imie: string;
-  nazwisko: string;
-  zdjecie?: string;
-  miasto: string;
-  telefon?: string | number;
-};
-
-export const SmallClientCard: React.FC<ClientProps> = ({
-  imie,
-  nazwisko,
-  zdjecie,
-  miasto,
-  telefon,
-}) => {
+export const SmallClientCard = ({ client }: { client: Client }) => {
   return (
     <Card className={style.container} style={{ marginBottom: "20px" }}>
       <CardHeader
@@ -27,14 +15,14 @@ export const SmallClientCard: React.FC<ClientProps> = ({
             style={{ background: "#2e3b65" }}
             sx={{ bgcolor: red[500] }}
             aria-label="recipe"
-            alt={imie + " " + nazwisko}
-            src={zdjecie}
+            alt={formatName(client)}
+            src={client.zdjecie}
           >
             R
           </Avatar>
         }
-        title={imie + " " + nazwisko}
-        subheader={miasto + " " + telefon}
+        title={formatName(client)}
+        subheader={client.miasto + ", " + client.telefon}
       />
     </Card>
   );

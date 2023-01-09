@@ -1,5 +1,8 @@
 import { useFormik } from "formik";
-import { AddClientForm, addClientValidationSchema } from "../utils/clientSchema";
+import {
+  AddClientForm,
+  addClientValidationSchema,
+} from "../utils/clientSchema";
 import { FormInput } from "../components/form/formInput";
 import { addClient } from "../api/clients";
 import { ClientActionFormik } from "../utils/useFormik";
@@ -18,7 +21,11 @@ export const AddClientPage = () => {
         ))}
       </section>
       <section className={style.buttons}>
-        <Button onClick={formik.handleSubmit} variant="outlined" className={style.btn}>
+        <Button
+          onClick={formik.handleSubmit}
+          variant="outlined"
+          className={style.btn}
+        >
           Submit
         </Button>
       </section>

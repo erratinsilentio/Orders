@@ -12,14 +12,15 @@ export const OrderDetailsPage = () => {
   const params = useParams();
 
   useEffect(() => {
-    getOrder(params.id).then((data) => {
-      setOrder(data);
-      getClientByTelephone(data?.telefon).then((res) => setClient(res));
-    });
-  }, []);
+    if (!!params.id) {
+      getOrder(params.id).then((data) => {
+        setOrder(data);
+        getClientByTelephone(data?.telefon).then((res) => setClient(res));
+      });
+    }
+  }, [params]);
   // console.log(params.id);
   if (!order || !client) return <p>loading...</p>;
-  console.log(order, client);
 
   return (
     <div className={style.container}>

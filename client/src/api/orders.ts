@@ -5,7 +5,7 @@ type Order = {
   telefon: string;
 };
 
-export const getOrder = async (id: string) => {
+export const getOrder = async (id: string | number) => {
   const response = await fetch(`http://localhost:3000/orders/${id}`);
   const data = await response.json();
   console.log(data);
@@ -30,7 +30,7 @@ export const addOrder = async (order: Order) => {
   return data;
 };
 
-export const deleteOrder = async (id: string) => {
+export const deleteOrder = async (id: string | number) => {
   const response = await fetch(`http://localhost:3000/orders/${id}`, {
     method: "DELETE",
   });
@@ -38,7 +38,7 @@ export const deleteOrder = async (id: string) => {
   console.log(data);
 };
 
-export const updateOrder = async (id: string, order: Order) => {
+export const updateOrder = async (id: string | number, order: Order) => {
   const response = await fetch(`http://localhost:3000/orders/${id}`, {
     method: "PUT",
     headers: { "Content-type": "application/json;charset=UTF-8" },

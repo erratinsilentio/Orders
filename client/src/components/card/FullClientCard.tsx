@@ -83,7 +83,7 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
             </Accordion>
           </p>
           <div className={style.buttons}>
-            <Link to={`/clients/${client.id}/edit`} state={client} className={style.link}>
+            <Link to={`/clients/${client.id}/edit`} className={style.link}>
               <Button variant="outlined">Edit</Button>
             </Link>
 

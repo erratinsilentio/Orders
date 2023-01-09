@@ -19,8 +19,14 @@ export const ClientsPage = () => {
   return (
     <div className={style.container}>
       <section className={style.action}>
-        <Button variant="outlined" style={{ borderColor: "#2e3b55", marginRight: "25px" }}>
-          <Link to={"/clients/add"} className={`${style.link} ${style.addLink}`}>
+        <Button
+          variant="outlined"
+          style={{ borderColor: "#2e3b55", marginRight: "25px" }}
+        >
+          <Link
+            to={"/clients/add"}
+            className={`${style.link} ${style.addLink}`}
+          >
             Add Client
           </Link>
         </Button>
@@ -28,15 +34,13 @@ export const ClientsPage = () => {
       </section>
       <section className={style.cards}>
         {clients.map((client) => (
-          <Link to={`/clients/${client.id}`} state={client} className={style.link} key={client.id}>
-            <SmallClientCard
-              key={client.id}
-              imie={client.imie}
-              nazwisko={client.nazwisko}
-              zdjecie={client.zdjecie}
-              miasto={client.miasto}
-              telefon={client.telefon}
-            />
+          <Link
+            to={`/clients/${client.id}`}
+            state={client}
+            className={style.link}
+            key={client.id}
+          >
+            <SmallClientCard key={client.id} client={client} />
           </Link>
         ))}
       </section>

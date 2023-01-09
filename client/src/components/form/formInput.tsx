@@ -5,16 +5,14 @@ import style from "./formInput.styles.css";
 export function FormInput<T>({
   formik,
   accessor,
-  width,
 }: {
   formik: FormikProps<T>;
   accessor: Exclude<keyof T, symbol>;
-  width?: string;
 }) {
   return (
     <div>
       <TextField
-        style={{ width: width ? width : "300px" }}
+        style={{ width: "300px" }}
         error={Boolean(formik.touched[accessor] && formik.errors[accessor])}
         helperText={
           formik.touched[accessor] && formik.errors[accessor]
