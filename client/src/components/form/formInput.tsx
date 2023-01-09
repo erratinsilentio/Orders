@@ -9,6 +9,7 @@ export function FormInput<T>({
   formik: FormikProps<T>;
   accessor: Exclude<keyof T, symbol>;
 }) {
+  console.log(accessor);
   return (
     <div>
       <TextField
@@ -25,6 +26,7 @@ export function FormInput<T>({
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values[accessor]}
+        type={accessor === "password" ? "password" : "text"}
       />
     </div>
   );
