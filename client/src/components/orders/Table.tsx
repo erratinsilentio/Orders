@@ -9,6 +9,7 @@ import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
 import { getAllOrders } from "../../api/orders";
 import { Order } from "../../data";
+import { formatPhone } from "../../utils/formatPhone";
 
 export const DataTable = () => {
   const [orders, setOrders] = useState<Order[] | null>(null);
@@ -40,7 +41,7 @@ export const DataTable = () => {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {order.telefon}
+                {formatPhone(order)}
               </TableCell>
               <TableCell align="right">{order.tytul}</TableCell>
               <TableCell align="right">{order.ilosc}</TableCell>
