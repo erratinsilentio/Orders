@@ -30,7 +30,9 @@ export const EditClientPage = () => {
     validationSchema: addClientValidationSchema,
     enableReinitialize: true,
     onSubmit: (values) => {
-      updateClient(String(client.id), values);
+      if (client && client.id) {
+        updateClient(String(client.id), values);
+      }
       alert("Client updated!");
     },
   });

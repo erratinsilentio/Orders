@@ -8,61 +8,63 @@ import { loginValidationSchema, registerValidationSchema } from "./userSchema";
 type Action = "add" | "update";
 
 export const ClientActionFormik = (action: Action, client?: Client) => {
-  if (action === "add") {
-    const formik = useFormik<AddClientForm>({
-      initialValues:
-        action === "add"
-          ? {
-              imie: "",
-              nazwisko: "",
-              ulica: "",
-              kod: "",
-              miasto: "",
-              region: "",
-              zdjecie: "",
-              telefon: "",
-            }
-          : {
-              imie: client.imie || "",
-              nazwisko: client.nazwisko || "",
-              ulica: client.ulica || "",
-              kod: client.kod || "",
-              miasto: client.miasto || "",
-              region: client.region || "",
-              zdjecie: client.zdjecie || "",
-              telefon: client.telefon || "",
-              orders: client.orders || [],
-            },
-      validationSchema: addClientValidationSchema,
-      onSubmit: (values) => {
-        action === "add" ? addClient(values) : updateClient(values);
-        action === "add" ? alert("Client added!") : alert("Client updated!");
-      },
-    });
-    return formik;
-  }
+  const formik = useFormik<AddClientForm>({
+    initialValues:
+      action === "update" && client
+        ? {
+            imie: client.imie || "",
+            nazwisko: client.nazwisko || "",
+            ulica: client.ulica || "",
+            kod: client.kod || "",
+            miasto: client.miasto || "",
+            region: client.region || "",
+            zdjecie: client.zdjecie || "",
+            telefon: client.telefon || "",
+          }
+        : {
+            imie: "",
+            nazwisko: "",
+            ulica: "",
+            kod: "",
+            miasto: "",
+            region: "",
+            zdjecie: "",
+            telefon: "",
+          },
+    validationSchema: addClientValidationSchema,
+    enableReinitialize: true,
+    onSubmit: (values) => {
+      action === "update" && client
+        ? updateClient(String(client.id), values)
+        : addClient(values);
+      action === "update" && client
+        ? alert("Client added!")
+        : alert("Client updated!");
+    },
+  });
+  return formik;
 
-  if (action === "update" && client) {
-    const formik = useFormik({
-      initialValues: {
-        imie: client.imie || "",
-        nazwisko: client.nazwisko || "",
-        ulica: client.ulica || "",
-        kod: client.kod || "",
-        miasto: client.miasto || "",
-        region: client.region || "",
-        zdjecie: client.zdjecie || "",
-        telefon: client.telefon || "",
-        orders: client.orders || [],
-      },
-      validationSchema: addClientValidationSchema,
-      onSubmit: (values) => {
-        updateClient(String(client.id), values);
-        alert(JSON.stringify(values, null, 2));
-      },
-    });
-    return formik;
-  }
+  // if (action === "update" && client) {
+  //   const formik = useFormik({
+  //     initialValues: {
+  //       imie: client.imie || "",
+  //       nazwisko: client.nazwisko || "",
+  //       ulica: client.ulica || "",
+  //       kod: client.kod || "",
+  //       miasto: client.miasto || "",
+  //       region: client.region || "",
+  //       zdjecie: client.zdjecie || "",
+  //       telefon: client.telefon || "",
+  //       orders: client.orders || [],
+  //     },
+  //     validationSchema: addClientValidationSchema,
+  //     onSubmit: (values) => {
+  //       updateClient(String(client.id), values);
+  //       alert(JSON.stringify(values, null, 2));
+  //     },
+  //   });
+  //   return formik;
+  // }
 };
 
 export const loginActionFormik = () => {
