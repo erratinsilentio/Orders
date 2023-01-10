@@ -121,7 +121,7 @@ export function ResponsiveAppBar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Link className={style.link} to={page.toLowerCase()}>
+              <Link className={style.link} to={page.toLowerCase()} key={page}>
                 <Button
                   key={page}
                   onClick={handleCloseNavMenu}
