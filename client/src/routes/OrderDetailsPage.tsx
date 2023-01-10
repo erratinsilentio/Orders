@@ -1,4 +1,4 @@
-import { useLocation, Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import style from "../styles/orderDetails.module.css";
 import { getOrder } from "../api/orders";
 import { getClientByTelephone } from "../api/clients";
@@ -21,7 +21,7 @@ export const OrderDetailsPage = () => {
     queryFn: () => getClientByTelephone(tel),
     enabled: !!tel,
   });
-  console.log(order);
+
   if (isLoading) return <p>loading...</p>;
   if (error) return <p>loading...</p>;
 

@@ -5,12 +5,30 @@ import {
 } from "../utils/clientSchema";
 import { FormInput } from "../components/form/formInput";
 import { addClient } from "../api/clients";
-import { ClientActionFormik } from "../utils/useFormik";
+import { addClientFormik } from "../utils/useFormik";
 import style from "../styles/addClient.module.css";
 import Button from "@mui/material/Button";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const AddClientPage = () => {
-  const formik = ClientActionFormik("add");
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation(
+    async (values) => {
+      return await addClient(values);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["client"]);
+      },
+      onError: () => {
+        console.log("Cos poszlo nie tak");
+      },
+    }
+  );
+
+  const formik = addClientFormik(mutation);
+
   if (!formik) return <p>loading...</p>;
 
   return (
