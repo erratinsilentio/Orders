@@ -2,27 +2,13 @@
   "clients": [
     {
       "imie": "Józef",
-      "nazwisko": "Kowalskiaaaa",
+      "nazwisko": "Kowalski",
       "ulica": "Wiśniowa",
       "kod": "00-111",
       "miasto": "Kraków",
       "region": "Zachodni",
       "zdjecie": "",
       "telefon": "+48777456789",
-      "orders": [
-        {
-          "id": "1991",
-          "tytul": "Plecak",
-          "ilosc": "2",
-          "opis": "Na plecy"
-        },
-        {
-          "id": "OsRUwvV",
-          "tytul": "zamowienie",
-          "ilosc": "777",
-          "opis": "to moj szczesliwy traf"
-        }
-      ],
       "id": 3
     },
     {
@@ -151,6 +137,20 @@
       "opis": "to moj szczesliwy traf",
       "ilosc": "777",
       "id": "OsRUwvV"
+    },
+    {
+      "telefon": "+48777456789",
+      "tytul": "kinder bueno",
+      "opis": "bardzo smaczne batony",
+      "ilosc": "3",
+      "id": "nJsywVZ"
+    },
+    {
+      "telefon": "+48777456789",
+      "tytul": "kinder bueno",
+      "opis": "bardzo smaczne batony",
+      "ilosc": "3",
+      "id": "cWxROVh"
     }
   ]
 }

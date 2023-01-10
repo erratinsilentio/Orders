@@ -8,11 +8,14 @@ export const getClient = async (id: string | number) => {
 };
 
 export const getClientByTelephone = async (tel: string) => {
-  const response = await fetch(`http://localhost:3000/clients/`);
+  const number = tel.slice(1);
+  console.log("siema", number);
+  const response = await fetch(
+    `http://localhost:3000/clients?telefon=%2B${number}`
+  );
   const data = await response.json();
-  const client = data.find((cl) => cl.telefon === tel);
-  console.log(client);
-  return client;
+  console.log(data[0]);
+  return data[0];
 };
 
 export const getAllClients = async () => {
@@ -59,12 +62,6 @@ export const updateClientsOrders = async (tel: string, order: Order) => {
     ...res.orders,
     { id: order.id, tytul: order.tytul, ilosc: order.ilosc, opis: order.opis },
   ];
-
-  const response = await fetch(`http://localhost:3000/clients/${res.id}`, {
-    method: "PUT",
-    headers: { "Content-type": "application/json;charset=UTF-8" },
-    body: JSON.stringify(res),
-  });
-  const data = await response.json();
-  console.log(data);
+  const data = await updateClient(res.id, res);
+  return data;
 };
