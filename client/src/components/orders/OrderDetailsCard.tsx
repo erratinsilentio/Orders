@@ -15,7 +15,9 @@ export const FullOrderCard: React.FC<Props> = ({ order, client }) => {
       <div className={style.container}>
         <div className={style.right}>
           <p>
-            <Link to={`/clients/${client.id}`}>{formatName(client)}</Link>
+            <Link to={`/clients/${client.id}`}>
+              {formatName(client.imie + " " + client.nazwisko)}
+            </Link>
           </p>
           <p>Tytuł: {order.tytul}</p>
           <p>Opis: {order.opis}</p>

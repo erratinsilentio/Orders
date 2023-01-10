@@ -1,7 +1,6 @@
 import { Client, Order } from "../data";
 
-export const formatPhone = (client: Client | Order) => {
-  let phone = client.telefon;
+export const formatPhone = (phone: string) => {
   return (
     phone.slice(0, 3) +
     " " +

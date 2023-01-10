@@ -1,10 +1,7 @@
-import { Client } from "../data";
-export const formatName = (client: Client) => {
-  let nameToLowerCase = client.imie.toLowerCase();
-  let nameFormatted = nameToLowerCase.charAt(0).toUpperCase() + nameToLowerCase.slice(1);
-
-  let surnameToLowerCase = client.nazwisko.toLowerCase();
-  let surnameFormatted = surnameToLowerCase.charAt(0).toUpperCase() + surnameToLowerCase.slice(1);
-
-  return nameFormatted + " " + surnameFormatted;
-};
+export function formatName(name: string) {
+  return name
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}

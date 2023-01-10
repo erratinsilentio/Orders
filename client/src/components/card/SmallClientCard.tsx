@@ -5,6 +5,7 @@ import { red } from "@mui/material/colors";
 import style from "./smallCard.module.css";
 import { Client } from "../../data";
 import { formatName } from "../../utils/formatName";
+import { formatPhone } from "../../utils/formatPhone";
 
 export const SmallClientCard = ({ client }: { client: Client }) => {
   return (
@@ -15,14 +16,14 @@ export const SmallClientCard = ({ client }: { client: Client }) => {
             style={{ background: "#2e3b65" }}
             sx={{ bgcolor: red[500] }}
             aria-label="recipe"
-            alt={formatName(client)}
+            alt={formatName(client.imie + " " + client.nazwisko)}
             src={client.zdjecie}
           >
             R
           </Avatar>
         }
-        title={formatName(client)}
-        subheader={client.miasto + ", " + client.telefon}
+        title={formatName(client.imie + " " + client.nazwisko)}
+        subheader={client.miasto + ", " + formatPhone(client.telefon)}
       />
     </Card>
   );

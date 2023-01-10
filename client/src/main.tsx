@@ -12,8 +12,6 @@ import { OrderDetailsPage } from "./routes/OrderDetailsPage";
 import { AddOrderPage } from "./routes/AddOrderPage";
 import { InvoicesPage } from "./routes/InvoicesPage";
 import { RegisterPage } from "./routes/RegisterPage";
-// create error
-// create loading
 
 const router = createBrowserRouter([
   {

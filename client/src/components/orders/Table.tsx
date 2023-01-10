@@ -41,7 +41,7 @@ export const DataTable = () => {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {formatPhone(order)}
+                {formatPhone(order.telefon)}
               </TableCell>
               <TableCell align="right">{order.tytul}</TableCell>
               <TableCell align="right">{order.ilosc}</TableCell>

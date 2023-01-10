@@ -40,10 +40,10 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
           </Avatar>
         </div>
         <div className={style.right}>
-          <p>{formatName(client)}</p>
+          <p>{formatName(client.imie + " " + client.nazwisko)}</p>
           <p>{"ul. " + client.ulica}</p>
           <p>{client.miasto + " " + client.kod}</p>
-          <p>{formatPhone(client)}</p>
+          <p>{formatPhone(client.telefon)}</p>
           <p>
             {" "}
             <Accordion className={style.accord}>
@@ -68,10 +68,16 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
                           client.orders.map((order) => (
                             <TableRow
                               key={order.id}
-                              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                              sx={{
+                                "&:last-child td, &:last-child th": {
+                                  border: 0,
+                                },
+                              }}
                             >
                               <TableCell component="th" scope="row">
-                                <Link to={`/orders/${order.id}`}>{"#" + order.id}</Link>
+                                <Link to={`/orders/${order.id}`}>
+                                  {"#" + order.id}
+                                </Link>
                               </TableCell>
                             </TableRow>
                           ))}
@@ -88,7 +94,10 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
             </Link>
 
             <Link to={"/clients"} className={style.link}>
-              <Button onClick={() => deleteClient(client.id)} variant="outlined">
+              <Button
+                onClick={() => deleteClient(client.id)}
+                variant="outlined"
+              >
                 DELETE
               </Button>
             </Link>
