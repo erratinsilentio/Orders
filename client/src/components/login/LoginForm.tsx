@@ -3,16 +3,18 @@ import { FormInput } from "../form/formInput";
 import Button from "@mui/material/Button";
 import { loginActionFormik } from "../../utils/useFormik";
 import { Link } from "react-router-dom";
+import { useUserContext } from "../../utils/userContext";
 
 export const LoginForm = () => {
-  const formik = loginActionFormik();
+  const { logIn } = useUserContext();
+  const formik = loginActionFormik(logIn);
 
   return (
-    <div className={style.container}>
+    <form onSubmit={formik.handleSubmit} className={style.container}>
       <FormInput formik={formik} accessor={"login"} />
       <FormInput formik={formik} accessor={"password"} />
       <div className={style.buttons}>
-        <Button variant="outlined" className={style.button}>
+        <Button type="submit" variant="outlined" className={style.button}>
           Login
         </Button>
         <Link to={"/register"} className={style.link}>
@@ -21,6 +23,6 @@ export const LoginForm = () => {
           </Button>
         </Link>
       </div>
-    </div>
+    </form>
   );
 };

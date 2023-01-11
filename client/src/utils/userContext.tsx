@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { createContext, useState } from "react";
 
-type User = {
+export type User = {
   email: string;
   login: string;
   password: string;
@@ -15,12 +15,16 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
   const addNewUser = (user: User) => {
     setUsers((users) => [...users, user]);
+    console.log(user, users);
   };
 
   const logIn = (user: User) => {
+    console.log("logging in...");
     if (isLoggedIn) return;
 
-    if (users.some((person) => person === user)) setIsLoggedIn(true);
+    if (users.some((person) => person.login === user.login && person.password === user.password))
+      setIsLoggedIn(true);
+    console.log("logged in");
   };
 
   const logOut = () => setIsLoggedIn(false);
