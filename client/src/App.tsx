@@ -12,6 +12,7 @@ const queryClient = new QueryClient({
 
 function App() {
   let location = useLocation();
+
   return (
     <UserProvider>
       {" "}

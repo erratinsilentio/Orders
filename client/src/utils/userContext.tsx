@@ -24,13 +24,15 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
     if (users.some((person) => person.login === user.login && person.password === user.password))
       setIsLoggedIn(true);
-    console.log("logged in");
+    console.log("logged in: ", isLoggedIn);
   };
 
   const logOut = () => setIsLoggedIn(false);
 
   return (
-    <UserContext.Provider value={{ users, setUsers, addNewUser, logIn, logOut }}>
+    <UserContext.Provider
+      value={{ users, setUsers, addNewUser, logIn, logOut, isLoggedIn, setIsLoggedIn }}
+    >
       {children}
     </UserContext.Provider>
   );
