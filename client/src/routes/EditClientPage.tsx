@@ -16,10 +16,10 @@ export const EditClientPage = () => {
     isLoading,
     data: client,
     error,
-  } = useQuery(["client"], () => getClient(params.id));
+  } = useQuery(["client"], () => getClient(params.id as string));
 
   const mutation = useMutation(
-    async (values) => {
+    async (values: Client) => {
       return await updateClient(String(params.id), values);
     },
     {

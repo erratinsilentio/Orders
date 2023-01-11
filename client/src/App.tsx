@@ -8,7 +8,7 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
-// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache(),
@@ -18,6 +18,9 @@ function App() {
   let location = useLocation();
   return (
     <QueryClientProvider client={queryClient}>
+      {process.env.NODE_ENV === "development" && (
+        <ReactQueryDevtools position="top-right" initialIsOpen={false} />
+      )}
       <div className="App">
         <ResponsiveAppBar />
         {location.pathname === "/" && <LoginForm />}

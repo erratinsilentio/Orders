@@ -8,7 +8,9 @@ import { useQuery } from "@tanstack/react-query";
 export const OrderDetailsPage = () => {
   const params = useParams();
 
-  const { data: order } = useQuery(["order"], () => getOrder(params.id));
+  const { data: order } = useQuery(["order"], () =>
+    getOrder(params.id as string)
+  );
 
   const tel = order?.telefon;
 

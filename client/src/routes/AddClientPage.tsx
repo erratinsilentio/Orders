@@ -9,12 +9,13 @@ import { addClientFormik } from "../utils/useFormik";
 import style from "../styles/addClient.module.css";
 import Button from "@mui/material/Button";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Client } from "../data";
 
 export const AddClientPage = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation(
-    async (values) => {
+    async (values: Client) => {
       return await addClient(values);
     },
     {

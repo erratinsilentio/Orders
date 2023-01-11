@@ -4,10 +4,10 @@ import { getAllClients, updateClientsOrders } from "../api/clients";
 import { addOrder } from "../api/orders";
 import Button from "@mui/material/Button";
 import style from "../styles/addOrder.module.css";
-import { Client } from "../data";
 import { AddClientForm } from "../utils/clientSchema";
 import { addOrderFormik } from "../utils/useFormik";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Order } from "../data";
 
 export const AddOrderPage = () => {
   const queryClient = useQueryClient();
@@ -19,7 +19,7 @@ export const AddOrderPage = () => {
   } = useQuery(["clients"], getAllClients);
 
   const mutation = useMutation(
-    async (values) => {
+    async (values: Order) => {
       return addOrder(values).then((order) =>
         updateClientsOrders(values.telefon, order)
       );

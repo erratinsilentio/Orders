@@ -1,5 +1,5 @@
 export interface Order {
-  id: string | number;
+  id?: string | number;
   tytul: string;
   opis: string;
   ilosc: string | number;
