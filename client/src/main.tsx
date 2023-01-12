@@ -13,6 +13,9 @@ import { AddOrderPage } from "./routes/AddOrderPage";
 import { InvoicesPage } from "./routes/InvoicesPage";
 import { RegisterPage } from "./routes/RegisterPage";
 import { ProtectedWrapper } from "./utils/ProtectedWrapped";
+import ErrorBoundary from "./utils/ErrorBoundary";
+import { Loading } from "./utils/Loading";
+import { Suspense } from "react";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +33,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/clients/add",
-        element: <AddClientPage />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <AddClientPage />
+          </Suspense>
+        ),
       },
       {
         path: "/clients/:id",
@@ -42,7 +49,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/orders",
-        element: <OrdersPage />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <OrdersPage />
+          </Suspense>
+        ),
       },
       {
         path: "/orders/:id",
@@ -66,6 +77,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ErrorBoundary>
+      <RouterProvider router={router} />
+    </ErrorBoundary>
   </React.StrictMode>
 );

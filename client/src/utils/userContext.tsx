@@ -12,7 +12,7 @@ const UserContext = createContext(undefined);
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [users, setUsers] = useState<User[] | []>([]);
   const [isLoggedIn, setIsLoggedIn] = useState<any>(null);
-  const loggedUser = useRef({});
+  const loggedUser = useRef<User | {}>({});
 
   const addNewUser = (user: User) => {
     setUsers((users) => [...users, user]);
@@ -30,10 +30,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     if (logger) {
       setIsLoggedIn(true);
       loggedUser.current = logger;
-      console.log("logger: ", logger);
-      console.log("login: ", loggedUser.current);
     }
-    // console.log("logged in as: ", isLoggedIn);
   };
 
   const logOut = () => {
@@ -41,9 +38,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <UserContext.Provider
-      value={{ users, setUsers, addNewUser, logIn, logOut, isLoggedIn, setIsLoggedIn, loggedUser }}
-    >
+    <UserContext.Provider value={{ users, addNewUser, logIn, logOut, isLoggedIn, loggedUser }}>
       {children}
     </UserContext.Provider>
   );

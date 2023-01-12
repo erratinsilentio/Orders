@@ -8,7 +8,6 @@ import { useUserContext } from "../../utils/userContext";
 export const LoginForm = () => {
   const { logIn, users } = useUserContext();
   const formik = loginActionFormik(logIn);
-  console.log(users);
 
   return (
     <form onSubmit={formik.handleSubmit} className={style.container}>
