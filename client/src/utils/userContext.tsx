@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { createContext, useState } from "react";
 
 export type User = {
@@ -11,7 +11,8 @@ const UserContext = createContext(undefined);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [users, setUsers] = useState<User[] | []>([]);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<any>(null);
+  const loggedUser = useRef({});
 
   const addNewUser = (user: User) => {
     setUsers((users) => [...users, user]);
@@ -22,12 +23,22 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     console.log("logging in...");
     if (isLoggedIn) return;
 
-    if (users.some((person) => person.login === user.login && person.password === user.password))
+    const logger = users.find(
+      (person) => person.login === user.login && person.password === user.password
+    );
+
+    if (logger) {
       setIsLoggedIn(true);
-    console.log("logged in: ", isLoggedIn);
+      loggedUser.current = logger;
+      console.log("logger: ", logger);
+      console.log("login: ", loggedUser);
+    }
+    // console.log("logged in as: ", isLoggedIn);
   };
 
-  const logOut = () => setIsLoggedIn(false);
+  const logOut = () => {
+    setIsLoggedIn(null);
+  };
 
   return (
     <UserContext.Provider

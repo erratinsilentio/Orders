@@ -12,6 +12,7 @@ import { OrderDetailsPage } from "./routes/OrderDetailsPage";
 import { AddOrderPage } from "./routes/AddOrderPage";
 import { InvoicesPage } from "./routes/InvoicesPage";
 import { RegisterPage } from "./routes/RegisterPage";
+import { ProtectedWrapper } from "./utils/ProtectedWrapped";
 
 const router = createBrowserRouter([
   {
@@ -53,7 +54,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/invoices/",
-        element: <InvoicesPage />,
+        element: (
+          <ProtectedWrapper>
+            <InvoicesPage />
+          </ProtectedWrapper>
+        ),
       },
     ],
   },
