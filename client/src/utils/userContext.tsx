@@ -31,7 +31,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       setIsLoggedIn(true);
       loggedUser.current = logger;
       console.log("logger: ", logger);
-      console.log("login: ", loggedUser);
+      console.log("login: ", loggedUser.current);
     }
     // console.log("logged in as: ", isLoggedIn);
   };
@@ -42,7 +42,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <UserContext.Provider
-      value={{ users, setUsers, addNewUser, logIn, logOut, isLoggedIn, setIsLoggedIn }}
+      value={{ users, setUsers, addNewUser, logIn, logOut, isLoggedIn, setIsLoggedIn, loggedUser }}
     >
       {children}
     </UserContext.Provider>

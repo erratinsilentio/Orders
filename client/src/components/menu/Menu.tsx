@@ -17,15 +17,15 @@ import AttachFileIcon from "@mui/icons-material/AttachFile";
 import { User, useUserContext } from "../../utils/userContext";
 
 const pages = ["Clients", "Orders", "Invoices"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export function ResponsiveAppBar() {
-  const { isLoggedIn } = useUserContext();
+  const { isLoggedIn, loggedUser } = useUserContext();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
+  const settings = [loggedUser.current?.login, "Account", "Dashboard", "Logout"];
   console.log(!isLoggedIn);
-
+  console.log(loggedUser.current);
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -144,7 +144,6 @@ export function ResponsiveAppBar() {
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                 </IconButton>
-                {}
               </Tooltip>
             )}
             <Menu
