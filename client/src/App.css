@@ -1,7 +1,16 @@
-.app {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-} 
+body{
+    background-color: var(--primary);
+}
+
+
+.light{
+  --primary: #e0f2fe;
+  --font: #2E3B55;
+}
+
+.dark{
+  --primary: #2E3B55;
+    --font: #e0f2fe;
+}
 
 

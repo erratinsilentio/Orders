@@ -15,11 +15,16 @@ import { Link } from "react-router-dom";
 import style from "./menu.module.css";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import { User, useUserContext } from "../../utils/userContext";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { useThemeContext } from "../../utils/ThemeContext";
 
 const pages = ["Clients", "Orders", "Invoices"];
 
 export function ResponsiveAppBar() {
   const { isLoggedIn, loggedUser } = useUserContext();
+  const { theme, toggleTheme } = useThemeContext();
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -146,6 +151,9 @@ export function ResponsiveAppBar() {
                 </IconButton>
               </Tooltip>
             )}
+            <IconButton sx={{ ml: 1 }} onClick={toggleTheme} color="inherit">
+              {theme === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+            </IconButton>
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"

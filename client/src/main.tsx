@@ -16,12 +16,12 @@ import { ProtectedWrapper } from "./utils/ProtectedWrapped";
 import ErrorBoundary from "./utils/ErrorBoundary";
 import { Loading } from "./utils/Loading";
 import { Suspense } from "react";
+import { ThemeProvider } from "./utils/ThemeContext";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    // errorElement: <ErrorPage />,
     children: [
       {
         path: "/register",
@@ -78,7 +78,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ErrorBoundary>
-      <RouterProvider router={router} />
+      <ThemeProvider>
+        <RouterProvider router={router} />
+      </ThemeProvider>
     </ErrorBoundary>
   </React.StrictMode>
 );
