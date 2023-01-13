@@ -8,6 +8,7 @@ import { UserProvider } from "./utils/userContext";
 import { useThemeContext } from "./utils/ThemeContext";
 import { Modal } from "./components/modal/Modal";
 import { useNotificationContext } from "./utils/NotificationContext";
+import MuiModal from "./components/modal/MuiModal";
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache(),
@@ -31,6 +32,7 @@ function App() {
           <ResponsiveAppBar />
           {location.pathname === "/" && <LoginForm />}
           <Modal />
+          <MuiModal />
           <Outlet />
         </div>
       </QueryClientProvider>

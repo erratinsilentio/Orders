@@ -19,13 +19,20 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { formatName } from "../../utils/formatName";
 import { formatPhone } from "../../utils/formatPhone";
+import { useModalContext } from "../../utils/ModalProvider";
+import { useCallback } from "react";
 
 type Props = {
   client: Client;
 };
 
 export const FullClientCard: React.FC<Props> = ({ client }) => {
+  const { handleOpen, decision } = useModalContext();
+
+  const handleDeleteClient = useCallback(() => deleteClient(client.id), [decision]);
+
   if (!client) return <p>loading...</p>;
+
   return (
     <DataBox className={style.box}>
       <div className={style.container}>
@@ -75,9 +82,7 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
                               }}
                             >
                               <TableCell component="th" scope="row">
-                                <Link to={`/orders/${order.id}`}>
-                                  {"#" + order.id}
-                                </Link>
+                                <Link to={`/orders/${order.id}`}>{"#" + order.id}</Link>
                               </TableCell>
                             </TableRow>
                           ))}
@@ -93,14 +98,15 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
               <Button variant="outlined">Edit</Button>
             </Link>
 
-            <Link to={"/clients"} className={style.link}>
-              <Button
-                onClick={() => deleteClient(client.id)}
-                variant="outlined"
-              >
-                DELETE
-              </Button>
-            </Link>
+            <Button
+              onClick={() => {
+                handleOpen();
+                handleDeleteClient();
+              }}
+              variant="outlined"
+            >
+              DELETE
+            </Button>
           </div>
         </div>
       </div>

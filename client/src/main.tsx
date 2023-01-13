@@ -18,6 +18,7 @@ import { Loading } from "./utils/Loading";
 import { Suspense } from "react";
 import { ThemeProvider } from "./utils/ThemeContext";
 import { NotificationProvider, useNotificationContext } from "./utils/NotificationContext";
+import { ModalProvider } from "./utils/ModalProvider";
 
 const router = createBrowserRouter([
   {
@@ -80,9 +81,11 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ErrorBoundary>
       <NotificationProvider>
-        <ThemeProvider>
-          <RouterProvider router={router} />
-        </ThemeProvider>
+        <ModalProvider>
+          <ThemeProvider>
+            <RouterProvider router={router} />
+          </ThemeProvider>
+        </ModalProvider>
       </NotificationProvider>
     </ErrorBoundary>
   </React.StrictMode>
