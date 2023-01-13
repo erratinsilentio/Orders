@@ -6,6 +6,7 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Client } from "../../data";
 import { FormikProps } from "formik";
+import { useThemeContext } from "../../utils/ThemeContext";
 
 type Props = {
   accessor: string;
@@ -14,11 +15,15 @@ type Props = {
 };
 
 export const FormSelect: React.FC<Props> = ({ accessor, formik, data }) => {
+  const { theme } = useThemeContext();
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel>{accessor}</InputLabel>
+        <InputLabel sx={{ color: `${theme === "dark" ? "var(--primary)" : "var(--font)"}` }}>
+          {accessor}
+        </InputLabel>
         <Select
+          sx={{ border: "1px solid var(--primary)" }}
           error={Boolean(formik.touched[accessor] && formik.errors[accessor])}
           id={accessor}
           label={accessor}

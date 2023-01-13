@@ -12,7 +12,11 @@ import { formatPhone } from "../../utils/formatPhone";
 export const DataTable = ({ orders }: { orders: Order[] }) => {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table
+        sx={{ minWidth: 650 }}
+        aria-label="simple table"
+        style={{ backgroundColor: "#e0f2fe" }}
+      >
         <TableHead>
           <TableRow>
             <TableCell>Klient</TableCell>
@@ -23,10 +27,7 @@ export const DataTable = ({ orders }: { orders: Order[] }) => {
         </TableHead>
         <TableBody>
           {orders.map((order) => (
-            <TableRow
-              key={order.id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
+            <TableRow key={order.id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
               <TableCell component="th" scope="row">
                 {formatPhone(order.telefon)}
               </TableCell>

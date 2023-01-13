@@ -24,7 +24,6 @@ export const addClientFormik = (mutation: UseMutationResult) => {
     enableReinitialize: true,
     onSubmit: (values) => {
       mutation.mutate(values);
-      alert("Client added!");
     },
   });
   return formik;
@@ -46,7 +45,6 @@ export const updateClientFormik = (client: Client, mutation: UseMutationResult) 
     enableReinitialize: true,
     onSubmit: (values) => {
       mutation.mutate(values);
-      alert("Client updated!");
     },
   });
   return formik;

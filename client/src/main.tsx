@@ -17,6 +17,7 @@ import ErrorBoundary from "./utils/ErrorBoundary";
 import { Loading } from "./utils/Loading";
 import { Suspense } from "react";
 import { ThemeProvider } from "./utils/ThemeContext";
+import { NotificationProvider, useNotificationContext } from "./utils/NotificationContext";
 
 const router = createBrowserRouter([
   {
@@ -78,9 +79,11 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ErrorBoundary>
-      <ThemeProvider>
-        <RouterProvider router={router} />
-      </ThemeProvider>
+      <NotificationProvider>
+        <ThemeProvider>
+          <RouterProvider router={router} />
+        </ThemeProvider>
+      </NotificationProvider>
     </ErrorBoundary>
   </React.StrictMode>
 );

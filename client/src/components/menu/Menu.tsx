@@ -22,15 +22,14 @@ import { useThemeContext } from "../../utils/ThemeContext";
 const pages = ["Clients", "Orders", "Invoices"];
 
 export function ResponsiveAppBar() {
-  const { isLoggedIn, loggedUser } = useUserContext();
+  const { isLoggedIn, loggedUser, logOut } = useUserContext();
   const { theme, toggleTheme } = useThemeContext();
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
   const settings = [loggedUser.current?.login, "Account", "Dashboard", "Logout"];
-  console.log(!isLoggedIn);
-  console.log(loggedUser.current);
+
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -172,7 +171,9 @@ export function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography textAlign="center" onClick={setting === "Logout" && logOut}>
+                    {setting}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>

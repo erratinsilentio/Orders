@@ -1,5 +1,7 @@
 import React, { useContext, useRef } from "react";
 import { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useNotificationContext } from "./NotificationContext";
 
 export type User = {
   email: string;
@@ -14,9 +16,21 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<any>(null);
   const loggedUser = useRef<User | {}>({});
 
+  const { setSuccess, setError } = useNotificationContext();
+  const navigate = useNavigate();
+
   const addNewUser = (user: User) => {
+    const checkIfUserExists = users.some(
+      (person) => person.email === user.email || person.login === user.login
+    );
+    if (checkIfUserExists) {
+      setError();
+      return;
+    }
+
     setUsers((users) => [...users, user]);
-    console.log(user, users);
+    setSuccess();
+    navigate("/");
   };
 
   const logIn = (user: User) => {
@@ -30,6 +44,9 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     if (logger) {
       setIsLoggedIn(true);
       loggedUser.current = logger;
+      setSuccess();
+    } else {
+      setError();
     }
   };
 

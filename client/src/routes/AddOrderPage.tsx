@@ -8,28 +8,25 @@ import { AddClientForm } from "../utils/clientSchema";
 import { addOrderFormik } from "../utils/useFormik";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Order } from "../data";
+import { useNotificationContext } from "../utils/NotificationContext";
 
 export const AddOrderPage = () => {
   const queryClient = useQueryClient();
+  const { setSuccess, setError } = useNotificationContext();
 
-  const {
-    data: clients,
-    isLoading,
-    error,
-  } = useQuery(["clients"], getAllClients);
+  const { data: clients, isLoading, error } = useQuery(["clients"], getAllClients);
 
   const mutation = useMutation(
     async (values: Order) => {
-      return addOrder(values).then((order) =>
-        updateClientsOrders(values.telefon, order)
-      );
+      return addOrder(values).then((order) => updateClientsOrders(values.telefon, order));
     },
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["clients"]);
+        setSuccess();
       },
       onError: () => {
-        console.log("Cos poszlo nie tak");
+        setError();
       },
     }
   );
@@ -43,27 +40,10 @@ export const AddOrderPage = () => {
     <div className={style.container}>
       {" "}
       <form onSubmit={formik.handleSubmit} className={style.form}>
-        <FormSelect
-          accessor="telefon"
-          formik={formik}
-          data={clients}
-          className={style.input}
-        />
-        <FormInput<AddClientForm>
-          accessor="tytul"
-          formik={formik}
-          className={style.input}
-        />
-        <FormInput<AddClientForm>
-          accessor="ilosc"
-          formik={formik}
-          className={style.input}
-        />
-        <FormInput<AddClientForm>
-          accessor="opis"
-          formik={formik}
-          className={style.input}
-        />
+        <FormSelect accessor="telefon" formik={formik} data={clients} className={style.input} />
+        <FormInput<AddClientForm> accessor="tytul" formik={formik} className={style.input} />
+        <FormInput<AddClientForm> accessor="ilosc" formik={formik} className={style.input} />
+        <FormInput<AddClientForm> accessor="opis" formik={formik} className={style.input} />
         <Button type="submit" className={style.button} variant="outlined">
           Send
         </Button>

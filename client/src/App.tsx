@@ -6,6 +6,8 @@ import { QueryCache, QueryClient, QueryClientProvider, useQuery } from "@tanstac
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { UserProvider } from "./utils/userContext";
 import { useThemeContext } from "./utils/ThemeContext";
+import { Modal } from "./components/modal/Modal";
+import { useNotificationContext } from "./utils/NotificationContext";
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache(),
@@ -15,14 +17,12 @@ function App() {
   let location = useLocation();
   const { theme } = useThemeContext();
 
-  const colors = {
-    primary: theme === "light" ? "#e0f2fe" : "#0c4a6e",
-    font: theme === "light" ? "#0c4a6e" : "#e0f2fe",
-  };
+  theme === "dark"
+    ? document.documentElement.style.setProperty("--bodyColor", "#18181b")
+    : document.documentElement.style.setProperty("--bodyColor", "#e0f2fe");
 
   return (
     <UserProvider>
-      {" "}
       <QueryClientProvider client={queryClient}>
         {/* {process.env.NODE_ENV === "development" && ( */}
         {/*   <ReactQueryDevtools position="top-right" initialIsOpen={false} /> */}
@@ -30,6 +30,7 @@ function App() {
         <div className={theme === "dark" ? "dark" : "light"}>
           <ResponsiveAppBar />
           {location.pathname === "/" && <LoginForm />}
+          <Modal />
           <Outlet />
         </div>
       </QueryClientProvider>

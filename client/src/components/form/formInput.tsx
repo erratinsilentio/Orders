@@ -1,5 +1,7 @@
 import TextField from "@mui/material/TextField";
+import { color } from "@mui/system";
 import { FormikProps } from "formik";
+import { useThemeContext } from "../../utils/ThemeContext";
 import style from "./formInput.styles.css";
 
 export function FormInput<T>({
@@ -9,11 +11,19 @@ export function FormInput<T>({
   formik: FormikProps<T>;
   accessor: Exclude<keyof T, symbol>;
 }) {
-  console.log(accessor);
+  const { theme } = useThemeContext();
   return (
     <div>
       <TextField
-        style={{ width: "300px" }}
+        sx={{
+          input: { color: "var(--font)" },
+          label: { color: `${theme === "dark" ? "var(--primary)" : "var(--font)"}` },
+        }}
+        style={{
+          width: "300px",
+          border: "1px solid var(--primary)",
+          borderRadius: "5px",
+        }}
         error={Boolean(formik.touched[accessor] && formik.errors[accessor])}
         helperText={
           formik.touched[accessor] && formik.errors[accessor]

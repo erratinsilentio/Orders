@@ -1,7 +1,6 @@
 body{
-    background-color: var(--primary);
+    background-color: var(--bodyColor);
 }
-
 
 .light{
   --primary: #e0f2fe;
