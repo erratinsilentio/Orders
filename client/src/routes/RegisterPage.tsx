@@ -2,7 +2,7 @@ import { FormInput } from "../components/form/formInput";
 import style from "../styles/registerPage.module.css";
 import { registerActionFormik } from "../utils/useFormik";
 import Button from "@mui/material/Button";
-import { useUserContext } from "../utils/userContext";
+import { useUserContext } from "../utils/UserContext";
 
 export const RegisterPage = () => {
   const { addNewUser } = useUserContext();

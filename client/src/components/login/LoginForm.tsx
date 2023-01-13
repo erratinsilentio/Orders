@@ -3,7 +3,7 @@ import { FormInput } from "../form/formInput";
 import Button from "@mui/material/Button";
 import { loginActionFormik } from "../../utils/useFormik";
 import { Link } from "react-router-dom";
-import { useUserContext } from "../../utils/userContext";
+import { useUserContext } from "../../utils/UserContext";
 
 export const LoginForm = () => {
   const { logIn, users } = useUserContext();

@@ -2,9 +2,14 @@ import { Outlet, useLocation } from "react-router-dom";
 import "./App.css";
 import { ResponsiveAppBar } from "./components/menu/Menu";
 import { LoginForm } from "./components/login/LoginForm";
-import { QueryCache, QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
+import {
+  QueryCache,
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { UserProvider } from "./utils/userContext";
+import { UserProvider } from "./utils/UserContext";
 import { useThemeContext } from "./utils/ThemeContext";
 import { Modal } from "./components/modal/Modal";
 import { useNotificationContext } from "./utils/NotificationContext";

@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import style from "./menu.module.css";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
-import { User, useUserContext } from "../../utils/userContext";
+import { User, useUserContext } from "../../utils/UserContext";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { useThemeContext } from "../../utils/ThemeContext";
@@ -25,10 +25,19 @@ export function ResponsiveAppBar() {
   const { isLoggedIn, loggedUser, logOut } = useUserContext();
   const { theme, toggleTheme } = useThemeContext();
 
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null
+  );
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
+    null
+  );
 
-  const settings = [loggedUser.current?.login, "Account", "Dashboard", "Logout"];
+  const settings = [
+    loggedUser.current?.login,
+    "Account",
+    "Dashboard",
+    "Logout",
+  ];
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -51,7 +60,9 @@ export function ResponsiveAppBar() {
         <Toolbar disableGutters>
           <Link to={"/"} className={style.link}>
             {" "}
-            <AttachFileIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+            <AttachFileIcon
+              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+            />
             <Typography
               variant="h6"
               noWrap
@@ -108,7 +119,9 @@ export function ResponsiveAppBar() {
             </Menu>
           </Box>
           <Link to={"/"} className={style.link}>
-            <AttachFileIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+            <AttachFileIcon
+              sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+            />
             <Typography
               variant="h5"
               noWrap
@@ -171,7 +184,10 @@ export function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center" onClick={setting === "Logout" && logOut}>
+                  <Typography
+                    textAlign="center"
+                    onClick={setting === "Logout" && logOut}
+                  >
                     {setting}
                   </Typography>
                 </MenuItem>

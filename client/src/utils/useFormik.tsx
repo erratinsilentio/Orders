@@ -6,7 +6,7 @@ import { loginForm, registerForm } from "./userSchema";
 import { loginValidationSchema, registerValidationSchema } from "./userSchema";
 import { AddOrderForm, orderSchema } from "./orderSchema";
 import { UseMutationResult } from "@tanstack/react-query";
-import { User } from "./userContext";
+import { User } from "./UserContext";
 
 export const addClientFormik = (mutation: UseMutationResult) => {
   const formik = useFormik<AddClientForm>({
@@ -29,7 +29,10 @@ export const addClientFormik = (mutation: UseMutationResult) => {
   return formik;
 };
 
-export const updateClientFormik = (client: Client, mutation: UseMutationResult) => {
+export const updateClientFormik = (
+  client: Client,
+  mutation: UseMutationResult
+) => {
   const formik = useFormik<AddClientForm>({
     initialValues: {
       imie: client.imie || "",

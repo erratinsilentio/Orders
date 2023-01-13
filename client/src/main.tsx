@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
@@ -12,13 +12,16 @@ import { OrderDetailsPage } from "./routes/OrderDetailsPage";
 import { AddOrderPage } from "./routes/AddOrderPage";
 import { InvoicesPage } from "./routes/InvoicesPage";
 import { RegisterPage } from "./routes/RegisterPage";
-import { ProtectedWrapper } from "./utils/ProtectedWrapped";
+import { ProtectedWrapper } from "./utils/ProtectedWrapper";
 import ErrorBoundary from "./utils/ErrorBoundary";
 import { Loading } from "./utils/Loading";
 import { Suspense } from "react";
 import { ThemeProvider } from "./utils/ThemeContext";
-import { NotificationProvider, useNotificationContext } from "./utils/NotificationContext";
-import { ModalProvider } from "./utils/ModalProvider";
+import {
+  NotificationProvider,
+  useNotificationContext,
+} from "./utils/NotificationContext";
+import { ModalProvider } from "./utils/ModalContext";
 
 const router = createBrowserRouter([
   {
