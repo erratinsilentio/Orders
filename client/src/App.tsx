@@ -11,9 +11,10 @@ import {
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { UserProvider } from "./utils/UserContext";
 import { useThemeContext } from "./utils/ThemeContext";
-import { Modal } from "./components/modal/Modal";
+import { Notification } from "./components/modal/Notification";
 import { useNotificationContext } from "./utils/NotificationContext";
 import MuiModal from "./components/modal/MuiModal";
+import { ModalProvider } from "./utils/ModalContext";
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache(),
@@ -36,8 +37,10 @@ function App() {
         <div className={theme === "dark" ? "dark" : "light"}>
           <ResponsiveAppBar />
           {location.pathname === "/" && <LoginForm />}
-          <Modal />
-          <MuiModal />
+          <Notification />
+          <ModalProvider>
+            <MuiModal />
+          </ModalProvider>
           <Outlet />
         </div>
       </QueryClientProvider>

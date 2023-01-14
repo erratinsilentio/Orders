@@ -26,7 +26,9 @@ export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <ModalContext.Provider value={{ open, handleOpen, handleClose, makeDecision }}>
+    <ModalContext.Provider
+      value={{ open, handleOpen, handleClose, makeDecision }}
+    >
       {children}
     </ModalContext.Provider>
   );
@@ -36,7 +38,7 @@ export const useModalContext = () => {
   const ctx = useContext(ModalContext);
 
   if (!ctx) {
-    throw new Error("Missing notificationContext, it's not wrapped in NotificationProvider");
+    throw new Error("Missing modalContext, it's not wrapped in ModalProvider");
   }
   return ctx;
 };

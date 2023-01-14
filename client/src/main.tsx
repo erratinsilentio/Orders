@@ -84,11 +84,11 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ErrorBoundary>
       <NotificationProvider>
-        <ModalProvider>
-          <ThemeProvider>
-            <RouterProvider router={router} />
-          </ThemeProvider>
-        </ModalProvider>
+        {/* <ModalProvider> */}
+        <ThemeProvider>
+          <RouterProvider router={router} />
+        </ThemeProvider>
+        {/* </ModalProvider> */}
       </NotificationProvider>
     </ErrorBoundary>
   </React.StrictMode>
