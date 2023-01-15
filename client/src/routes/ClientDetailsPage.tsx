@@ -14,9 +14,5 @@ export const ClientDetailsPage = () => {
   if (isLoading) return <p>loading</p>;
   if (error) return <p>error</p>;
 
-  return (
-    <ModalProvider>
-      <FullClientCard client={data} />{" "}
-    </ModalProvider>
-  );
+  return <FullClientCard client={data} />;
 };

@@ -20,7 +20,7 @@ import Paper from "@mui/material/Paper";
 import { formatName } from "../../utils/formatName";
 import { formatPhone } from "../../utils/formatPhone";
 import { useModalContext } from "../../utils/ModalContext";
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type Props = {
   client: Client;
@@ -29,10 +29,10 @@ type Props = {
 export const FullClientCard: React.FC<Props> = ({ client }) => {
   const { handleOpen, decision } = useModalContext();
 
-  const handleDeleteClient = useCallback(
-    () => deleteClient(client.id),
-    [decision]
-  );
+  // const handleDeleteClient = useCallback(
+  //   () => deleteClient(client.id),
+  //   [decision]
+  // );
 
   if (!client) return <p>loading...</p>;
 
@@ -50,12 +50,13 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
           </Avatar>
         </div>
         <div className={style.right}>
-          <p>{formatName(client.imie + " " + client.nazwisko)}</p>
+          <p>
+            {formatName(client.imie + " " + client.nazwisko) + "" + decision}
+          </p>
           <p>{"ul. " + client.ulica}</p>
           <p>{client.miasto + " " + client.kod}</p>
           <p>{formatPhone(client.telefon)}</p>
           <p>
-            {" "}
             <Accordion className={style.accord}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -106,7 +107,6 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
             <Button
               onClick={() => {
                 handleOpen();
-                handleDeleteClient();
               }}
               variant="outlined"
             >

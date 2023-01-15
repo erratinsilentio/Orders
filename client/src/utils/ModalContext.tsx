@@ -27,7 +27,12 @@ export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <ModalContext.Provider
-      value={{ open, handleOpen, handleClose, makeDecision }}
+      value={{
+        open,
+        handleOpen,
+        handleClose,
+        makeDecision,
+      }}
     >
       {children}
     </ModalContext.Provider>

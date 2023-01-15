@@ -21,7 +21,6 @@ import {
   NotificationProvider,
   useNotificationContext,
 } from "./utils/NotificationContext";
-import { ModalProvider } from "./utils/ModalContext";
 
 const router = createBrowserRouter([
   {
@@ -84,11 +83,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ErrorBoundary>
       <NotificationProvider>
-        {/* <ModalProvider> */}
         <ThemeProvider>
           <RouterProvider router={router} />
         </ThemeProvider>
-        {/* </ModalProvider> */}
       </NotificationProvider>
     </ErrorBoundary>
   </React.StrictMode>

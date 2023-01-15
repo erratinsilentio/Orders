@@ -4,6 +4,7 @@ import { getOrder } from "../api/orders";
 import { getClientByTelephone } from "../api/clients";
 import { FullOrderCard } from "../components/orders/OrderDetailsCard";
 import { useQuery } from "@tanstack/react-query";
+import { ModalProvider } from "../utils/ModalContext";
 
 export const OrderDetailsPage = () => {
   const params = useParams();

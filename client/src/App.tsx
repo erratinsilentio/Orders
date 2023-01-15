@@ -40,8 +40,8 @@ function App() {
           <Notification />
           <ModalProvider>
             <MuiModal />
+            <Outlet />
           </ModalProvider>
-          <Outlet />
         </div>
       </QueryClientProvider>
     </UserProvider>
