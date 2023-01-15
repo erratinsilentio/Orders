@@ -1,5 +1,5 @@
 import { Client } from "../../data";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import style from "./fullCard.module.css";
 import { deleteClient } from "../../api/clients";
 import Button from "@mui/material/Button";
@@ -22,23 +22,27 @@ import { formatPhone } from "../../utils/formatPhone";
 import { useModalContext } from "../../utils/ModalContext";
 import { useCallback, useEffect, useRef, useState } from "react";
 import useConfirm from "../../utils/useConfirm";
+import { useNotificationContext } from "../../utils/NotificationContext";
 
 type Props = {
   client: Client;
 };
 
 export const FullClientCard: React.FC<Props> = ({ client }) => {
-  const { handleOpen, decision } = useModalContext();
-
+  const navigate = useNavigate();
   const { confirm } = useConfirm();
-  const [message, setMessage] = useState("");
+  const { setSuccess, setError } = useNotificationContext();
+
   const showConfirm = async () => {
     const isConfirmed = await confirm("Do you confirm your choice?");
 
     if (isConfirmed) {
-      console.log("yeah");
-    } else {
-      console.log("naah");
+      deleteClient(client.id)
+        .then(() => {
+          setSuccess();
+          navigate("/clients");
+        })
+        .catch(setError);
     }
   };
 
@@ -110,12 +114,7 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
               <Button variant="outlined">Edit</Button>
             </Link>
 
-            <Button
-              onClick={() => {
-                showConfirm();
-              }}
-              variant="outlined"
-            >
+            <Button onClick={showConfirm} variant="outlined">
               DELETE
             </Button>
           </div>

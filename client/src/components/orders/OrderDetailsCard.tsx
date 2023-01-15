@@ -1,5 +1,5 @@
 import { Client, Order } from "../../data";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import style from "./orderDetails.module.css";
 import { DataBox } from "../card/Box";
 import { formatName } from "../../utils/formatName";
@@ -10,6 +10,7 @@ import { deleteOrder } from "../../api/orders";
 import { deleteClientsOrder } from "../../api/clients";
 import { useNotificationContext } from "../../utils/NotificationContext";
 import { setDefaultResultOrder } from "dns";
+import useConfirm from "../../utils/useConfirm";
 
 type Props = {
   order: Order;
@@ -17,19 +18,25 @@ type Props = {
 };
 
 export const FullOrderCard: React.FC<Props> = ({ order, client }) => {
-  const { handleOpen, decision } = useModalContext();
+  const navigate = useNavigate();
+  const { confirm } = useConfirm();
   const { setSuccess, setError } = useNotificationContext();
 
-  const handleDeleteOrder = useCallback(
-    () =>
+  const showConfirm = async () => {
+    const isConfirmed = await confirm("Do you confirm your choice?");
+
+    if (isConfirmed) {
       deleteOrder(order.id)
         .then((data) => {
           deleteClientsOrder(data.telefon, data);
         })
-        .then(() => setSuccess())
-        .catch((err) => setError()),
-    [decision]
-  );
+        .then(() => {
+          setSuccess();
+          navigate("/orders");
+        })
+        .catch(setError);
+    }
+  };
 
   return (
     <DataBox className={style.box}>
@@ -43,13 +50,7 @@ export const FullOrderCard: React.FC<Props> = ({ order, client }) => {
           <p>Tytuł: {order.tytul}</p>
           <p>Opis: {order.opis}</p>
           <p>Ilość: {order.ilosc}</p>
-          <Button
-            onClick={() => {
-              handleOpen();
-              // handleDeleteOrder();
-            }}
-            variant="outlined"
-          >
+          <Button onClick={showConfirm} variant="outlined">
             DELETE
           </Button>
         </div>
