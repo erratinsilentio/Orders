@@ -1,39 +1,14 @@
 import React, { useContext } from "react";
-import { createContext, useState } from "react";
+import { createContext, useState, useReducer } from "react";
+import { reducer, initialState } from "../store/Reducer";
 
-const ModalContext = createContext(undefined);
+export const ModalContext = createContext(undefined);
 
 export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
-  const [open, setOpen] = useState<boolean>(false);
-  const [decision, setDecision] = useState<boolean | null>(null);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    setDecision(null);
-  };
-
-  const makeDecision = (bool: boolean) => {
-    if (bool) {
-      setDecision(true);
-      handleClose();
-    } else {
-      handleClose();
-    }
-  };
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <ModalContext.Provider
-      value={{
-        open,
-        handleOpen,
-        handleClose,
-        makeDecision,
-      }}
-    >
+    <ModalContext.Provider value={[state, dispatch]}>
       {children}
     </ModalContext.Provider>
   );

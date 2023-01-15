@@ -21,6 +21,7 @@ import { formatName } from "../../utils/formatName";
 import { formatPhone } from "../../utils/formatPhone";
 import { useModalContext } from "../../utils/ModalContext";
 import { useCallback, useEffect, useRef, useState } from "react";
+import useConfirm from "../../utils/useConfirm";
 
 type Props = {
   client: Client;
@@ -29,10 +30,17 @@ type Props = {
 export const FullClientCard: React.FC<Props> = ({ client }) => {
   const { handleOpen, decision } = useModalContext();
 
-  // const handleDeleteClient = useCallback(
-  //   () => deleteClient(client.id),
-  //   [decision]
-  // );
+  const { confirm } = useConfirm();
+  const [message, setMessage] = useState("");
+  const showConfirm = async () => {
+    const isConfirmed = await confirm("Do you confirm your choice?");
+
+    if (isConfirmed) {
+      console.log("yeah");
+    } else {
+      console.log("naah");
+    }
+  };
 
   if (!client) return <p>loading...</p>;
 
@@ -50,9 +58,7 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
           </Avatar>
         </div>
         <div className={style.right}>
-          <p>
-            {formatName(client.imie + " " + client.nazwisko) + "" + decision}
-          </p>
+          <p>{formatName(client.imie + " " + client.nazwisko)}</p>
           <p>{"ul. " + client.ulica}</p>
           <p>{client.miasto + " " + client.kod}</p>
           <p>{formatPhone(client.telefon)}</p>
@@ -106,7 +112,7 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
 
             <Button
               onClick={() => {
-                handleOpen();
+                showConfirm();
               }}
               variant="outlined"
             >

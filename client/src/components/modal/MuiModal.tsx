@@ -1,8 +1,8 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { useModalContext } from "../../utils/ModalContext";
 import Button from "@mui/material/Button";
+import useConfirm from "../../utils/useConfirm";
 
 const style = {
   position: "absolute" as "absolute",
@@ -22,12 +22,13 @@ const style = {
 };
 
 export default function MuiModal() {
-  const { open, handleOpen, handleClose, makeDecision } = useModalContext();
+  const { onConfirm, onCancel, confirmState, closeConfirm } = useConfirm();
+
   return (
     <div>
       <Modal
-        open={open}
-        onClose={handleClose}
+        open={confirmState.show}
+        onClose={closeConfirm}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -44,11 +45,11 @@ export default function MuiModal() {
             <Button
               variant="contained"
               style={{ marginRight: "20px" }}
-              onClick={() => makeDecision(true)}
+              onClick={onConfirm}
             >
               Yes
             </Button>
-            <Button variant="contained" onClick={() => makeDecision(false)}>
+            <Button variant="contained" onClick={onCancel}>
               No
             </Button>
           </div>
