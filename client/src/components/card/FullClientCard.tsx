@@ -30,11 +30,11 @@ type Props = {
 
 export const FullClientCard: React.FC<Props> = ({ client }) => {
   const navigate = useNavigate();
-  const { confirm } = useConfirm();
+  const { showModal } = useConfirm();
   const { setSuccess, setError } = useNotificationContext();
 
   const showConfirm = async () => {
-    const isConfirmed = await confirm("Do you confirm your choice?");
+    const isConfirmed = await showModal();
 
     if (isConfirmed) {
       deleteClient(client.id)

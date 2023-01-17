@@ -1,19 +1,17 @@
-export const SHOW_CONFIRM = "SHOW_CONFIRM";
-export const HIDE_CONFIRM = "HIDE_CONFIRM";
+export const SHOW_MODAL = "SHOW_MODAL";
+export const HIDE_MODAL = "HIDE_MODAL";
 
 export const initialState = {
   show: false,
-  text: "",
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case SHOW_CONFIRM:
+    case SHOW_MODAL:
       return {
         show: true,
-        text: action.payload.text,
       };
-    case HIDE_CONFIRM:
+    case HIDE_MODAL:
       return initialState;
     default:
       return initialState;

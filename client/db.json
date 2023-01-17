@@ -24,6 +24,24 @@
         }
       ],
       "id": 4
+    },
+    {
+      "id": 5,
+      "imie": "Mariusz",
+      "nazwisko": "Kowalski",
+      "ulica": "Wiśniowa",
+      "kod": "00-1111",
+      "miasto": "Kraków",
+      "region": "Zachodni",
+      "telefon": "+48119938028",
+      "orders": [
+        {
+          "id": "1932",
+          "tytul": "Spodnie",
+          "ilosc": "5",
+          "opis": "Wygodne"
+        }
+      ]
     }
   ],
   "orders": [
@@ -40,6 +58,14 @@
       "ilosc": "4",
       "opis": "Wow",
       "telefon": "+48847948735"
+    },
+    {
+      "id": "1866",
+      "tytul": "Cygaro",
+      "ilosc": "14",
+      "opis": "Uwaga",
+      "telefon": "+48847948735"
     }
   ]
 }
+

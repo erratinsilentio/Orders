@@ -19,11 +19,11 @@ type Props = {
 
 export const FullOrderCard: React.FC<Props> = ({ order, client }) => {
   const navigate = useNavigate();
-  const { confirm } = useConfirm();
+  const { showModal } = useConfirm();
   const { setSuccess, setError } = useNotificationContext();
 
   const showConfirm = async () => {
-    const isConfirmed = await confirm("Do you confirm your choice?");
+    const isConfirmed = await showModal();
 
     if (isConfirmed) {
       deleteOrder(order.id)
