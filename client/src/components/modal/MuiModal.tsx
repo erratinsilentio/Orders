@@ -22,13 +22,13 @@ const style = {
 };
 
 export default function MuiModal() {
-  const { onConfirm, onCancel, confirmState, closeConfirm } = useConfirm();
+  const { onConfirm, onCancel, confirmState, unshowModal } = useConfirm();
 
   return (
     <div>
       <Modal
-        open={confirmState.show}
-        onClose={closeConfirm}
+        open={confirmState}
+        onClose={unshowModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >

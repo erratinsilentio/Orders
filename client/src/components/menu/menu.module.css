@@ -1,7 +1,13 @@
-.link{
-    text-decoration: none;
-    color: white;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
+.link {
+  text-decoration: none;
+  color: white;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+.right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: space-between; */
 }

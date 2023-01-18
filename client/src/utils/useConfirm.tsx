@@ -1,36 +1,33 @@
-import { useContext } from "react";
-import { HIDE_MODAL, SHOW_MODAL } from "../store/Reducer";
-import { ModalContext, useModalContext } from "./ModalContext";
+import { useSelector, useDispatch } from "react-redux";
+import { openModal, closeModal } from "../store/modalSlice";
+import { RootState } from "../store/store";
 
 let resolveCallback;
 function useConfirm() {
-  const [confirmState, dispatch] = useContext(ModalContext);
+  const confirmState = useSelector((state: RootState) => state.modal.show);
+  const dispatch = useDispatch();
 
   const onConfirm = () => {
-    closeModal();
+    unshowModal();
     resolveCallback(true);
   };
 
   const onCancel = () => {
-    closeModal();
+    unshowModal();
     resolveCallback(false);
   };
   const showModal = () => {
-    dispatch({
-      type: SHOW_MODAL,
-    });
+    dispatch(openModal());
     return new Promise((res, rej) => {
       resolveCallback = res;
     });
   };
 
-  const closeModal = () => {
-    dispatch({
-      type: HIDE_MODAL,
-    });
-  };
+  function unshowModal() {
+    dispatch(closeModal());
+  }
 
-  return { showModal, onConfirm, onCancel, confirmState, closeModal };
+  return { showModal, onConfirm, onCancel, confirmState, unshowModal };
 }
 
 export default useConfirm;

@@ -18,12 +18,15 @@ import { User, useUserContext } from "../../utils/UserContext";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { useThemeContext } from "../../utils/ThemeContext";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 const pages = ["Clients", "Orders", "Invoices"];
 
 export function ResponsiveAppBar() {
   const { isLoggedIn, loggedUser, logOut } = useUserContext();
   const { theme, toggleTheme } = useThemeContext();
+  const moneyAmount = useSelector((state: RootState) => state.money.amount);
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -156,16 +159,29 @@ export function ResponsiveAppBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            {isLoggedIn && (
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
-            )}
-            <IconButton sx={{ ml: 1 }} onClick={toggleTheme} color="inherit">
-              {theme === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
-            </IconButton>
+            <div className={style.right}>
+              {isLoggedIn && (
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar
+                      alt="Remy Sharp"
+                      src="/static/images/avatar/2.jpg"
+                    />
+                  </IconButton>
+                </Tooltip>
+              )}
+              <IconButton
+                sx={{ ml: 1 }}
+                onClick={toggleTheme}
+                color="inherit"
+                style={{ margin: "10px" }}
+              >
+                {theme === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+              </IconButton>
+              <Link className={style.link} to={"/money"}>
+                {moneyAmount}
+              </Link>
+            </div>
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"

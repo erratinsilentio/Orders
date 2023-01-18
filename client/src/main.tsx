@@ -21,6 +21,9 @@ import {
   NotificationProvider,
   useNotificationContext,
 } from "./utils/NotificationContext";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import { MoneyPage } from "./routes/MoneyPage";
 
 const router = createBrowserRouter([
   {
@@ -68,12 +71,16 @@ const router = createBrowserRouter([
         element: <AddOrderPage />,
       },
       {
-        path: "/invoices/",
+        path: "/invoices",
         element: (
           <ProtectedWrapper>
             <InvoicesPage />
           </ProtectedWrapper>
         ),
+      },
+      {
+        path: "/money",
+        element: <MoneyPage />,
       },
     ],
   },
@@ -81,12 +88,14 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <ErrorBoundary>
-      <NotificationProvider>
-        <ThemeProvider>
-          <RouterProvider router={router} />
-        </ThemeProvider>
-      </NotificationProvider>
-    </ErrorBoundary>
+    <Provider store={store}>
+      <ErrorBoundary>
+        <NotificationProvider>
+          <ThemeProvider>
+            <RouterProvider router={router} />
+          </ThemeProvider>
+        </NotificationProvider>
+      </ErrorBoundary>
+    </Provider>
   </React.StrictMode>
 );

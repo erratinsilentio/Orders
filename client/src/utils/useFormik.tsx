@@ -7,6 +7,10 @@ import { loginValidationSchema, registerValidationSchema } from "./userSchema";
 import { AddOrderForm, orderSchema } from "./orderSchema";
 import { UseMutationResult } from "@tanstack/react-query";
 import { User } from "./UserContext";
+import { moneyForm, moneyValidationSchema } from "./moneySchema";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import { deposit, withdraw } from "../store/moneySlice";
 
 export const addClientFormik = (mutation: UseMutationResult) => {
   const formik = useFormik<AddClientForm>({
@@ -94,6 +98,26 @@ export const addOrderFormik = (mutation: UseMutationResult) => {
     onSubmit: (values) => {
       mutation.mutate(values);
       alert(JSON.stringify(values, null, 2));
+    },
+  });
+
+  return formik;
+};
+
+export type MoneyAction = "withdraw" | "deposit";
+
+export const moneyFormik = (action: MoneyAction) => {
+  const dispatch = useDispatch();
+
+  const formik = useFormik<moneyForm>({
+    initialValues: {
+      amount: 0,
+    },
+    validationSchema: moneyValidationSchema,
+    onSubmit: (values) => {
+      action === "withdraw"
+        ? dispatch(withdraw(Number(values.amount)))
+        : dispatch(deposit(Number(values.amount)));
     },
   });
 
