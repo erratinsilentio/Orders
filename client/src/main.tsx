@@ -88,14 +88,14 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <ErrorBoundary>
-        <NotificationProvider>
+    <NotificationProvider>
+      <Provider store={store}>
+        <ErrorBoundary>
           <ThemeProvider>
             <RouterProvider router={router} />
           </ThemeProvider>
-        </NotificationProvider>
-      </ErrorBoundary>
-    </Provider>
+        </ErrorBoundary>
+      </Provider>
+    </NotificationProvider>
   </React.StrictMode>
 );

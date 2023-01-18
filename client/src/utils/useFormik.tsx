@@ -11,6 +11,7 @@ import { moneyForm, moneyValidationSchema } from "./moneySchema";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { deposit, withdraw } from "../store/moneySlice";
+import { useNotificationContext } from "./NotificationContext";
 
 export const addClientFormik = (mutation: UseMutationResult) => {
   const formik = useFormik<AddClientForm>({
@@ -108,6 +109,7 @@ export type MoneyAction = "withdraw" | "deposit";
 
 export const moneyFormik = (action: MoneyAction) => {
   const dispatch = useDispatch();
+  const { setSuccess, setError } = useNotificationContext();
 
   const formik = useFormik<moneyForm>({
     initialValues: {
@@ -115,9 +117,14 @@ export const moneyFormik = (action: MoneyAction) => {
     },
     validationSchema: moneyValidationSchema,
     onSubmit: (values) => {
-      action === "withdraw"
-        ? dispatch(withdraw(Number(values.amount)))
-        : dispatch(deposit(Number(values.amount)));
+      try {
+        action === "withdraw"
+          ? dispatch(withdraw(Number(values.amount)))
+          : dispatch(deposit(Number(values.amount)));
+        setSuccess();
+      } catch {
+        setError();
+      }
     },
   });
 

@@ -14,6 +14,9 @@ export const moneySlice = createSlice({
   initialState,
   reducers: {
     withdraw: (state, action: PayloadAction<number>) => {
+      if (action.payload > state.amount) {
+        throw new Error("not enough money!");
+      }
       state.amount -= action.payload;
     },
     deposit: (state, action: PayloadAction<number>) => {
