@@ -9,7 +9,6 @@ import { UseMutationResult } from "@tanstack/react-query";
 import { User } from "./UserContext";
 import { moneyForm, moneyValidationSchema } from "./moneySchema";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store/store";
 import { deposit, withdraw } from "../store/moneySlice";
 import { useNotificationContext } from "./NotificationContext";
 
@@ -94,6 +93,7 @@ export const addOrderFormik = (mutation: UseMutationResult) => {
       tytul: "",
       opis: "",
       ilosc: "",
+      kwota: 0,
     },
     validationSchema: orderSchema,
     onSubmit: (values) => {

@@ -16,6 +16,7 @@ export const orderSchema = yup.object({
     .string()
     .min(10, "Opis musi mieć minimum 10 liter")
     .required("To pole jest wymagane"),
+  kwota: yup.number().required("To pole jest wymagane"),
 });
 
 export type AddOrderForm = InferType<typeof orderSchema>;
