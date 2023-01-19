@@ -1,39 +1,44 @@
-import { useFormik } from "formik";
-import { AddOrderForm, orderSchema } from "../utils/orderSchema";
 import { FormInput } from "../components/form/formInput";
 import { FormSelect } from "../components/form/formSelect";
-import { useState, useEffect } from "react";
 import { getAllClients, updateClientsOrders } from "../api/clients";
 import { addOrder } from "../api/orders";
 import Button from "@mui/material/Button";
 import style from "../styles/addOrder.module.css";
-import { Client } from "../data";
 import { AddClientForm } from "../utils/clientSchema";
+import { addOrderFormik } from "../utils/useFormik";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Order } from "../data";
 
 export const AddOrderPage = () => {
-  const [clients, setClients] = useState<Client[] | null>(null);
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    getAllClients().then((data) => setClients(data));
-  }, []);
+  const {
+    data: clients,
+    isLoading,
+    error,
+  } = useQuery(["clients"], getAllClients);
 
-  const formik = useFormik<AddOrderForm>({
-    initialValues: {
-      telefon: "",
-      tytul: "",
-      opis: "",
-      ilosc: "",
-    },
-    validationSchema: orderSchema,
-    onSubmit: (values) => {
-      console.log(values.telefon);
-      alert(JSON.stringify(values, null, 2));
-      addOrder(values).then((order) =>
+  const mutation = useMutation(
+    async (values: Order) => {
+      return addOrder(values).then((order) =>
         updateClientsOrders(values.telefon, order)
       );
     },
-  });
-  if (!clients) return <p>loading...</p>;
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["clients"]);
+      },
+      onError: () => {
+        console.log("Cos poszlo nie tak");
+      },
+    }
+  );
+
+  const formik = addOrderFormik(mutation);
+
+  if (isLoading) return <p>loading...</p>;
+  if (error) return <p>error!</p>;
+
   return (
     <div className={style.container}>
       {" "}

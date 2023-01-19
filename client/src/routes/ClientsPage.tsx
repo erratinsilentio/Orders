@@ -3,18 +3,15 @@ import style from "../styles/clients.module.css";
 import { SmallClientCard } from "../components/card/SmallClientCard";
 import { Client } from "../data";
 import { getAllClients } from "../api/clients";
-import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import { useQuery } from "@tanstack/react-query";
 
 export const ClientsPage = () => {
-  const [clients, setClients] = useState<Client[] | null>(null);
+  const { data, isLoading, error } = useQuery(["clients"], getAllClients);
 
-  useEffect(() => {
-    getAllClients().then((response) => setClients(response));
-  }, []);
-
-  if (!clients) return <p>loading...</p>;
+  if (isLoading) return <p>loading...</p>;
+  if (error) return <p>error!</p>;
 
   return (
     <div className={style.container}>
@@ -33,7 +30,7 @@ export const ClientsPage = () => {
         <TextField id="outlined-basic" label="Search" variant="outlined" />
       </section>
       <section className={style.cards}>
-        {clients.map((client) => (
+        {data.map((client) => (
           <Link
             to={`/clients/${client.id}`}
             state={client}

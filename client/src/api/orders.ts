@@ -8,14 +8,12 @@ type Order = {
 export const getOrder = async (id: string | number) => {
   const response = await fetch(`http://localhost:3000/orders/${id}`);
   const data = await response.json();
-  console.log(data);
   return data;
 };
 
 export const getAllOrders = async () => {
   const response = await fetch(`http://localhost:3000/orders/`);
   const data = await response.json();
-  console.log(data);
   return data;
 };
 
@@ -26,7 +24,6 @@ export const addOrder = async (order: Order) => {
     body: JSON.stringify(order),
   });
   const data = await response.json();
-  console.log(data);
   return data;
 };
 
@@ -35,7 +32,7 @@ export const deleteOrder = async (id: string | number) => {
     method: "DELETE",
   });
   const data = await response.json();
-  console.log(data);
+  return data;
 };
 
 export const updateOrder = async (id: string | number, order: Order) => {
@@ -45,5 +42,5 @@ export const updateOrder = async (id: string | number, order: Order) => {
     body: JSON.stringify(order),
   });
   const data = await response.json();
-  console.log(data);
+  return data;
 };

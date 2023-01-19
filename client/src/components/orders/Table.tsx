@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,22 +6,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
-import { getAllOrders } from "../../api/orders";
 import { Order } from "../../data";
 import { formatPhone } from "../../utils/formatPhone";
 
-export const DataTable = () => {
-  const [orders, setOrders] = useState<Order[] | null>(null);
-
-  useEffect(() => {
-    getAllOrders().then((data) => {
-      setOrders(data);
-      console.log(orders);
-    });
-  }, []);
-
-  if (!orders) return <p>loading...</p>;
-
+export const DataTable = ({ orders }: { orders: Order[] }) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">

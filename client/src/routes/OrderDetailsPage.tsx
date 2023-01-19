@@ -1,26 +1,31 @@
-import { useLocation, Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import style from "../styles/orderDetails.module.css";
 import { getOrder } from "../api/orders";
-import { getAllClients, getClientByTelephone } from "../api/clients";
-import { useEffect, useState } from "react";
+import { getClientByTelephone } from "../api/clients";
 import { FullOrderCard } from "../components/orders/OrderDetailsCard";
+import { useQuery } from "@tanstack/react-query";
 
 export const OrderDetailsPage = () => {
-  const [order, setOrder] = useState(null);
-  const [client, setClient] = useState(null);
-
   const params = useParams();
 
-  useEffect(() => {
-    if (!!params.id) {
-      getOrder(params.id).then((data) => {
-        setOrder(data);
-        getClientByTelephone(data?.telefon).then((res) => setClient(res));
-      });
-    }
-  }, [params]);
-  // console.log(params.id);
-  if (!order || !client) return <p>loading...</p>;
+  const { data: order } = useQuery(["order"], () =>
+    getOrder(params.id as string)
+  );
+
+  const tel = order?.telefon;
+
+  const {
+    data: client,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["client", tel],
+    queryFn: () => getClientByTelephone(tel),
+    enabled: !!tel,
+  });
+
+  if (isLoading) return <p>loading...</p>;
+  if (error) return <p>loading...</p>;
 
   return (
     <div className={style.container}>

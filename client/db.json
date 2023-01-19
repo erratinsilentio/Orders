@@ -1,17 +1,6 @@
 {
   "clients": [
     {
-      "imie": "Józef",
-      "nazwisko": "Kowalski",
-      "ulica": "Wiśniowa",
-      "kod": "00-111",
-      "miasto": "Kraków",
-      "region": "Zachodni",
-      "zdjecie": "",
-      "telefon": "+48777456789",
-      "id": 3
-    },
-    {
       "imie": "Andrzej",
       "nazwisko": "Kowal",
       "ulica": "Wiśniowa",
