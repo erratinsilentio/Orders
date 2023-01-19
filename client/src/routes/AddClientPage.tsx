@@ -1,8 +1,5 @@
 import { useFormik } from "formik";
-import {
-  AddClientForm,
-  addClientValidationSchema,
-} from "../utils/clientSchema";
+import { AddClientForm, addClientValidationSchema } from "../utils/clientSchema";
 import { FormInput } from "../components/form/formInput";
 import { addClient } from "../api/clients";
 import { addClientFormik } from "../utils/useFormik";
@@ -10,9 +7,11 @@ import style from "../styles/addClient.module.css";
 import Button from "@mui/material/Button";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Client } from "../data";
+import { useNotificationContext } from "../utils/NotificationContext";
 
 export const AddClientPage = () => {
   const queryClient = useQueryClient();
+  const { setSuccess, setError } = useNotificationContext();
 
   const mutation = useMutation(
     async (values: Client) => {
@@ -21,9 +20,10 @@ export const AddClientPage = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["client"]);
+        setSuccess();
       },
       onError: () => {
-        console.log("Cos poszlo nie tak");
+        setError();
       },
     }
   );
@@ -40,11 +40,7 @@ export const AddClientPage = () => {
         ))}
       </section>
       <section className={style.buttons}>
-        <Button
-          onClick={formik.handleSubmit}
-          variant="outlined"
-          className={style.btn}
-        >
+        <Button onClick={formik.handleSubmit} variant="outlined" className={style.btn}>
           Submit
         </Button>
       </section>

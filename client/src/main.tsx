@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
@@ -12,12 +12,20 @@ import { OrderDetailsPage } from "./routes/OrderDetailsPage";
 import { AddOrderPage } from "./routes/AddOrderPage";
 import { InvoicesPage } from "./routes/InvoicesPage";
 import { RegisterPage } from "./routes/RegisterPage";
+import { ProtectedWrapper } from "./utils/ProtectedWrapper";
+import ErrorBoundary from "./utils/ErrorBoundary";
+import { Loading } from "./utils/Loading";
+import { Suspense } from "react";
+import { ThemeProvider } from "./utils/ThemeContext";
+import {
+  NotificationProvider,
+  useNotificationContext,
+} from "./utils/NotificationContext";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    // errorElement: <ErrorPage />,
     children: [
       {
         path: "/register",
@@ -29,7 +37,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/clients/add",
-        element: <AddClientPage />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <AddClientPage />
+          </Suspense>
+        ),
       },
       {
         path: "/clients/:id",
@@ -41,7 +53,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/orders",
-        element: <OrdersPage />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <OrdersPage />
+          </Suspense>
+        ),
       },
       {
         path: "/orders/:id",
@@ -53,7 +69,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/invoices/",
-        element: <InvoicesPage />,
+        element: (
+          <ProtectedWrapper>
+            <InvoicesPage />
+          </ProtectedWrapper>
+        ),
       },
     ],
   },
@@ -61,6 +81,12 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ErrorBoundary>
+      <NotificationProvider>
+        <ThemeProvider>
+          <RouterProvider router={router} />
+        </ThemeProvider>
+      </NotificationProvider>
+    </ErrorBoundary>
   </React.StrictMode>
 );

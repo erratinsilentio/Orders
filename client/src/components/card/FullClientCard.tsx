@@ -1,5 +1,5 @@
 import { Client } from "../../data";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import style from "./fullCard.module.css";
 import { deleteClient } from "../../api/clients";
 import Button from "@mui/material/Button";
@@ -19,13 +19,35 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { formatName } from "../../utils/formatName";
 import { formatPhone } from "../../utils/formatPhone";
+import { useModalContext } from "../../utils/ModalContext";
+import { useCallback, useEffect, useRef, useState } from "react";
+import useConfirm from "../../utils/useConfirm";
+import { useNotificationContext } from "../../utils/NotificationContext";
 
 type Props = {
   client: Client;
 };
 
 export const FullClientCard: React.FC<Props> = ({ client }) => {
+  const navigate = useNavigate();
+  const { showModal } = useConfirm();
+  const { setSuccess, setError } = useNotificationContext();
+
+  const showConfirm = async () => {
+    const isConfirmed = await showModal();
+
+    if (isConfirmed) {
+      deleteClient(client.id)
+        .then(() => {
+          setSuccess();
+          navigate("/clients");
+        })
+        .catch(setError);
+    }
+  };
+
   if (!client) return <p>loading...</p>;
+
   return (
     <DataBox className={style.box}>
       <div className={style.container}>
@@ -45,7 +67,6 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
           <p>{client.miasto + " " + client.kod}</p>
           <p>{formatPhone(client.telefon)}</p>
           <p>
-            {" "}
             <Accordion className={style.accord}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -93,14 +114,9 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
               <Button variant="outlined">Edit</Button>
             </Link>
 
-            <Link to={"/clients"} className={style.link}>
-              <Button
-                onClick={() => deleteClient(client.id)}
-                variant="outlined"
-              >
-                DELETE
-              </Button>
-            </Link>
+            <Button onClick={showConfirm} variant="outlined">
+              DELETE
+            </Button>
           </div>
         </div>
       </div>

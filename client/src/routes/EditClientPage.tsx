@@ -7,10 +7,12 @@ import Button from "@mui/material/Button";
 import style from "../styles/editClient.module.css";
 import { Client } from "../data";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useNotificationContext } from "../utils/NotificationContext";
 
 export const EditClientPage = () => {
   const queryClient = useQueryClient();
   const params = useParams();
+  const { setSuccess, setError } = useNotificationContext();
 
   const {
     isLoading,
@@ -25,9 +27,10 @@ export const EditClientPage = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["client"]);
+        setSuccess();
       },
       onError: () => {
-        console.log("Cos poszlo nie tak");
+        setError();
       },
     }
   );
@@ -46,11 +49,7 @@ export const EditClientPage = () => {
       </section>
       <section className={style.buttons}>
         <Link to={`/clients/${params.id}`} className={style.link}>
-          <Button
-            onClick={formik.handleSubmit}
-            variant="outlined"
-            className={style.btn}
-          >
+          <Button onClick={formik.handleSubmit} variant="outlined" className={style.btn}>
             Update
           </Button>
         </Link>

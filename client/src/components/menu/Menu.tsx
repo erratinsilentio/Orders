@@ -14,17 +14,30 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import style from "./menu.module.css";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
+import { User, useUserContext } from "../../utils/UserContext";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { useThemeContext } from "../../utils/ThemeContext";
 
 const pages = ["Clients", "Orders", "Invoices"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export function ResponsiveAppBar() {
+  const { isLoggedIn, loggedUser, logOut } = useUserContext();
+  const { theme, toggleTheme } = useThemeContext();
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+
+  const settings = [
+    loggedUser.current?.login,
+    "Account",
+    "Dashboard",
+    "Logout",
+  ];
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -45,24 +58,29 @@ export function ResponsiveAppBar() {
     <AppBar position="static" style={{ background: "#2E3B55" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AttachFileIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            INVOICE.ME
-          </Typography>
+          <Link to={"/"} className={style.link}>
+            {" "}
+            <AttachFileIcon
+              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+            />
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              INVOICE.ME
+            </Typography>
+          </Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -100,25 +118,29 @@ export function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <AttachFileIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            INVOICE.ME
-          </Typography>
+          <Link to={"/"} className={style.link}>
+            <AttachFileIcon
+              sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+            />
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href=""
+              sx={{
+                mr: 2,
+                display: { xs: "flex", md: "none" },
+                flexGrow: 1,
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              INVOICE.ME
+            </Typography>
+          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Link className={style.link} to={page.toLowerCase()} key={page}>
@@ -134,11 +156,16 @@ export function ResponsiveAppBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
+            {isLoggedIn && (
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Tooltip>
+            )}
+            <IconButton sx={{ ml: 1 }} onClick={toggleTheme} color="inherit">
+              {theme === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+            </IconButton>
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
@@ -157,7 +184,12 @@ export function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography
+                    textAlign="center"
+                    onClick={setting === "Logout" && logOut}
+                  >
+                    {setting}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>

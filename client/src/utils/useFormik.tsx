@@ -5,8 +5,10 @@ import { Client } from "../data";
 import { loginForm, registerForm } from "./userSchema";
 import { loginValidationSchema, registerValidationSchema } from "./userSchema";
 import { AddOrderForm, orderSchema } from "./orderSchema";
+import { UseMutationResult } from "@tanstack/react-query";
+import { User } from "./UserContext";
 
-export const addClientFormik = (mutation) => {
+export const addClientFormik = (mutation: UseMutationResult) => {
   const formik = useFormik<AddClientForm>({
     initialValues: {
       imie: "",
@@ -22,13 +24,15 @@ export const addClientFormik = (mutation) => {
     enableReinitialize: true,
     onSubmit: (values) => {
       mutation.mutate(values);
-      alert("Client added!");
     },
   });
   return formik;
 };
 
-export const updateClientFormik = (client: Client, mutation) => {
+export const updateClientFormik = (
+  client: Client,
+  mutation: UseMutationResult
+) => {
   const formik = useFormik<AddClientForm>({
     initialValues: {
       imie: client.imie || "",
@@ -44,13 +48,12 @@ export const updateClientFormik = (client: Client, mutation) => {
     enableReinitialize: true,
     onSubmit: (values) => {
       mutation.mutate(values);
-      alert("Client updated!");
     },
   });
   return formik;
 };
 
-export const loginActionFormik = () => {
+export const loginActionFormik = (logIn: (user: User) => void) => {
   const formik = useFormik<loginForm>({
     initialValues: {
       login: "",
@@ -58,13 +61,13 @@ export const loginActionFormik = () => {
     },
     validationSchema: loginValidationSchema,
     onSubmit: (values) => {
-      console.log(values);
+      logIn(values);
     },
   });
   return formik;
 };
 
-export const registerActionFormik = () => {
+export const registerActionFormik = (addUser: (user: User) => void) => {
   const formik = useFormik<registerForm>({
     initialValues: {
       email: "",
@@ -72,14 +75,14 @@ export const registerActionFormik = () => {
       password: "",
     },
     validationSchema: registerValidationSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: (values: User | registerForm) => {
+      addUser(values);
     },
   });
   return formik;
 };
 
-export const addOrderFormik = (mutation) => {
+export const addOrderFormik = (mutation: UseMutationResult) => {
   const formik = useFormik<AddOrderForm>({
     initialValues: {
       telefon: "",

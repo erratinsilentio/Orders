@@ -2,6 +2,7 @@ import { FullClientCard } from "../components/card/FullClientCard";
 import { useParams } from "react-router-dom";
 import { getClient } from "../api/clients";
 import { useQuery } from "@tanstack/react-query";
+import { ModalProvider } from "../utils/ModalContext";
 
 export const ClientDetailsPage = () => {
   const params = useParams();

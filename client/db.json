@@ -42,39 +42,6 @@
           "opis": "Wygodne"
         }
       ]
-    },
-    {
-      "imie": "kacper",
-      "nazwisko": "kondracki",
-      "ulica": "kakakakaka",
-      "kod": "01-111",
-      "miasto": "warszau",
-      "region": "mazowieckie",
-      "zdjecie": "",
-      "telefon": "+48111222333",
-      "id": 6
-    },
-    {
-      "imie": "aleksander",
-      "nazwisko": "marianov",
-      "ulica": "super",
-      "kod": "01-111",
-      "miasto": "wluczengi",
-      "region": "",
-      "zdjecie": "",
-      "telefon": "+48999999999",
-      "id": 7
-    },
-    {
-      "imie": "aleks",
-      "nazwisko": "szewc",
-      "ulica": "mysińska",
-      "kod": "01-111",
-      "miasto": "danzig",
-      "region": "zachodnie",
-      "zdjecie": "",
-      "telefon": "+48000000000",
-      "id": 8
     }
   ],
   "orders": [
@@ -98,48 +65,7 @@
       "ilosc": "14",
       "opis": "Uwaga",
       "telefon": "+48847948735"
-    },
-    {
-      "id": "1991",
-      "tytul": "Plecak",
-      "ilosc": "2",
-      "opis": "Na plecy",
-      "telefon": "+48777456789"
-    },
-    {
-      "id": "1666",
-      "tytul": "Koszula",
-      "ilosc": "1",
-      "opis": "W kratke",
-      "telefon": "+48898990000"
-    },
-    {
-      "id": "1632",
-      "tytul": "Buty",
-      "ilosc": "1",
-      "opis": "Wygodne",
-      "telefon": "+48123456789"
-    },
-    {
-      "telefon": "+48777456789",
-      "tytul": "zamowienie",
-      "opis": "to moj szczesliwy traf",
-      "ilosc": "777",
-      "id": "OsRUwvV"
-    },
-    {
-      "telefon": "+48777456789",
-      "tytul": "kinder bueno",
-      "opis": "bardzo smaczne batony",
-      "ilosc": "3",
-      "id": "nJsywVZ"
-    },
-    {
-      "telefon": "+48777456789",
-      "tytul": "kinder bueno",
-      "opis": "bardzo smaczne batony",
-      "ilosc": "3",
-      "id": "cWxROVh"
     }
   ]
 }
+
