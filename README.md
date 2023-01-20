@@ -26,7 +26,7 @@
 
 ## 🧐 About <a name = "about"></a>
 
-This project was built during my mentorship program, which is still in progress. It's a web application for tracking orders, and payments for each of them. It implements many technologies that were previously foreign to me, but led to my deepening understanding of web app structure, optimization stategies, and overall functionality.
+This project was built during my mentorship program, which is still in progress. It's a web application for tracking orders, and payments for each of them. It implements many technologies that were previously foreign to me, but led to deepening of my understanding about web app structure, optimization stategies, and overall website functionality. You can find all features in [technologies](#built_using) section.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
