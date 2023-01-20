@@ -22,10 +22,6 @@ function App() {
   let location = useLocation();
   const { theme } = useThemeContext();
 
-  theme === "dark"
-    ? document.documentElement.style.setProperty("--bodyColor", "#18181b")
-    : document.documentElement.style.setProperty("--bodyColor", "#e0f2fe");
-
   return (
     <UserProvider>
       <QueryClientProvider client={queryClient}>

@@ -23,7 +23,7 @@
           "opis": "Uwaga"
         },
         {
-          "id": "1866",
+          "id": "1867",
           "tytul": "Gruszka",
           "ilosc": "1",
           "opis": "Bardzo smaczny owoc"
@@ -85,13 +85,13 @@
       "status": "new"
     },
     {
-      "id": "1866",
+      "id": "1867",
       "tytul": "Gruszka",
       "ilosc": "1",
       "opis": "Bardzo smaczny owoc",
       "telefon": "+48847948735",
       "kwota": 10,
-      "status": "new"
+      "status": "awaiting"
     },
     {
       "telefon": "+48119938028",

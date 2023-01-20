@@ -57,6 +57,6 @@ export const changeOrderStatus = async (
   const order = await getOrder(id);
   const updatedOrder = { ...order, status: status };
   const response = await updateOrder(id, updatedOrder);
-  const data = await response.json();
-  return data;
+  console.log(response);
+  return response;
 };

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { Order } from "../data";
 import { changeOrderStatus } from "../api/orders";
-import { AirTwoTone } from "@mui/icons-material";
+import { AirTwoTone, PlaylistAddOutlined } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import { deposit } from "./moneySlice";
 
@@ -17,14 +17,12 @@ export const moneySlice = createSlice({
   name: "orders",
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<OrderSlice>) => {
-      //zamówienia mogą zostać dodane do store na podstawie statusu "new", po dodaniu zamówienia
-      //jego status zmienia się na "awaiting", po opłaceniu na "payed". Dzięki temu nie musimy robić
-      //dodatkowej weryfikacji czy zamówienie nie jest zdublowane.
-
-      changeOrderStatus(action.payload.id, "awaiting").then((res) => {
-        state = [...state, { id: res.id, tytul: res.tytul }];
-      });
+    add: (state, action: PayloadAction<string>) => {
+      // state.push({ id: "1111", tytul: "tytul" });
+      // changeOrderStatus(action.payload, "awaiting").then((res) => {
+      //   state.push({ id: res.id, tytul: res.tytul });
+      // });
+      state.push({ id: action.payload.id, tytul: action.payload.tytul });
     },
     pay: (state, action: PayloadAction<string>) => {
       //sprawdz czy takie id znajduje sie w store

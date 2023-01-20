@@ -73,9 +73,9 @@ const router = createBrowserRouter([
       {
         path: "/invoices",
         element: (
-          <ProtectedWrapper>
-            <InvoicesPage />
-          </ProtectedWrapper>
+          // <ProtectedWrapper>
+          <InvoicesPage />
+          // </ProtectedWrapper>
         ),
       },
       {

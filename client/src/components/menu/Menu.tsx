@@ -62,7 +62,6 @@ export function ResponsiveAppBar() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link to={"/"} className={style.link}>
-            {" "}
             <AttachFileIcon
               sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
             />
@@ -202,7 +201,7 @@ export function ResponsiveAppBar() {
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography
                     textAlign="center"
-                    onClick={setting === "Logout" && logOut}
+                    onClick={setting === "Logout" ? logOut : undefined}
                   >
                     {setting}
                   </Typography>

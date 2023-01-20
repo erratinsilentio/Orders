@@ -11,7 +11,7 @@ export const ProtectedWrapper = ({
   const navigate = useNavigate();
   useEffect(() => {
     if (!isLoggedIn) navigate("/");
-  });
+  }, []);
 
   return <>{children}</>;
 };
