@@ -1,10 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { Order } from "../data";
-import { changeOrderStatus } from "../api/orders";
-import { AirTwoTone, PlaylistAddOutlined } from "@mui/icons-material";
-import { useDispatch } from "react-redux";
-import { deposit } from "./moneySlice";
 
 export interface OrderSlice {
   id: string;
@@ -17,7 +13,7 @@ export const moneySlice = createSlice({
   name: "orders",
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<string>) => {
+    add: (state, action: PayloadAction<Order>) => {
       state.push({ id: action.payload.id, tytul: action.payload.tytul });
     },
     pay: (state, action: PayloadAction<string>) => {

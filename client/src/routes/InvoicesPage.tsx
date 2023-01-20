@@ -1,33 +1,44 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
-
 import Button from "@mui/material/Button";
 import { useState } from "react";
 import { BasicSelect } from "../components/invoices/Select";
 import BasicTable from "../components/invoices/Table";
 import { changeOrderStatus, getOrder } from "../api/orders";
-import { deposit, withdraw } from "../store/moneySlice";
+import { deposit } from "../store/moneySlice";
 import { pay } from "../store/orderSlice";
 import { useNotificationContext } from "../utils/NotificationContext";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const InvoicesPage = () => {
+  const queryClient = useQueryClient();
   const orders = useSelector((state: RootState) => state.order);
   const { setSuccess, setError } = useNotificationContext();
   const dispatch = useDispatch();
 
   const [selected, setSelected] = useState<string>("");
 
-  const handlePay = async (id: string) => {
-    try {
-      const order = await getOrder(id);
-      const payedOrder = await changeOrderStatus(order.id, "payed");
-      dispatch(deposit(payedOrder.kwota));
-      dispatch(pay(payedOrder.id));
-      setSuccess();
-    } catch {
-      setError();
+  const mutation = useMutation(
+    async (values: string) => {
+      return getOrder(values).then((order) =>
+        changeOrderStatus(order.id, "payed").then((payedOrder) => {
+          dispatch(deposit(payedOrder.kwota));
+          dispatch(pay(payedOrder.id));
+        })
+      );
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["orders"]);
+        setSuccess();
+      },
+      onError: () => {
+        setError();
+      },
     }
-  };
+  );
+
+  const handlePay = async (id: string) => mutation.mutate(id);
 
   return (
     <>

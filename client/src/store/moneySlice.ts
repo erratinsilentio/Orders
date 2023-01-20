@@ -21,7 +21,7 @@ export const moneySlice = createSlice({
     },
     deposit: (state, action: PayloadAction<number>) => {
       if (action.payload < 0) return;
-      state.amount += action.payload;
+      state.amount += Number(action.payload);
     },
   },
 });
