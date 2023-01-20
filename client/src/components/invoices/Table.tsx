@@ -11,7 +11,11 @@ export default function BasicTable({ orders }: { orders: OrderSlice[] }) {
   return (
     <TableContainer
       component={Paper}
-      style={{ marginTop: "10px", marginBottom: "15px" }}
+      style={{
+        marginTop: "10px",
+        marginBottom: "15px",
+        backgroundColor: "#f0f9ff",
+      }}
     >
       <Table sx={{ minWidth: 300 }} aria-label="simple table">
         <TableHead>

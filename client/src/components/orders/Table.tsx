@@ -43,7 +43,7 @@ export const DataTable = ({ orders }: { orders: Order[] }) => {
       <Table
         sx={{ minWidth: 650 }}
         aria-label="simple table"
-        style={{ backgroundColor: "#e0f2fe" }}
+        style={{ backgroundColor: "#f0f9ff" }}
       >
         <TableHead>
           <TableRow>

@@ -6,23 +6,8 @@
   align-items: center;
 }
 
-.inputs {
-  width: 610px;
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 300px 300px;
-  justify-items: center;
-}
-
-.buttons {
-  padding-top: 20px;
-  width: 610px;
-  display: grid;
-  justify-content: center;
-}
-
 .btn {
-  width: 610px;
+  width: 300px;
 }
 
 @media (max-width: 650px) {
@@ -31,11 +16,5 @@
     flex-direction: column;
     align-items: center;
     width: 90vw;
-  }
-  .buttons {
-    width: 90vw;
-  }
-  .btn {
-    width: 300px;
   }
 }

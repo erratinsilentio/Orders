@@ -21,6 +21,7 @@ export const MoneyPage = () => {
         type="submit"
         variant="outlined"
         className={style.btn}
+        style={{ marginTop: "15px", marginBottom: "5px" }}
       >
         Deposit
       </Button>
