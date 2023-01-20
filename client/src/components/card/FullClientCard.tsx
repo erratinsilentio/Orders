@@ -19,13 +19,11 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { formatName } from "../../utils/formatName";
 import { formatPhone } from "../../utils/formatPhone";
-import { useModalContext } from "../../utils/ModalContext";
-import { useCallback, useEffect, useRef, useState } from "react";
 import useConfirm from "../../utils/useConfirm";
 import { useNotificationContext } from "../../utils/NotificationContext";
 
 type Props = {
-  client: Client;
+  client: Client | undefined;
 };
 
 export const FullClientCard: React.FC<Props> = ({ client }) => {

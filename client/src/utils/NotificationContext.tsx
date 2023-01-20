@@ -1,14 +1,28 @@
 import React, { useContext } from "react";
 import { createContext, useState } from "react";
 
-const NotificationContext = createContext(undefined);
+type SetFunc = () => void;
 
 type Notification = "error" | "success" | null;
-export const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
+
+interface Value {
+  notification: Notification;
+  message: string;
+  setSuccess: SetFunc;
+  setError: SetFunc;
+}
+
+const NotificationContext = createContext<Value | undefined>(undefined);
+
+export const NotificationProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [notification, setNotification] = useState<Notification>(null);
   const [message, setMessage] = useState<string>("");
 
-  const setSuccess = () => {
+  const setSuccess: SetFunc = () => {
     setNotification("success");
     setMessage("Success!");
     setTimeout(() => {
@@ -17,7 +31,7 @@ export const NotificationProvider = ({ children }: { children: React.ReactNode }
     }, 3000);
   };
 
-  const setError = () => {
+  const setError: SetFunc = () => {
     setNotification("error");
     setMessage("Something went wrong!");
     setTimeout(() => {
@@ -25,8 +39,11 @@ export const NotificationProvider = ({ children }: { children: React.ReactNode }
       setMessage("");
     }, 3000);
   };
+
   return (
-    <NotificationContext.Provider value={{ notification, message, setSuccess, setError }}>
+    <NotificationContext.Provider
+      value={{ notification, message, setSuccess, setError } as Value}
+    >
       {children}
     </NotificationContext.Provider>
   );
@@ -36,7 +53,9 @@ export const useNotificationContext = () => {
   const ctx = useContext(NotificationContext);
 
   if (!ctx) {
-    throw new Error("Missing notificationContext, it's not wrapped in NotificationProvider");
+    throw new Error(
+      "Missing notificationContext, it's not wrapped in NotificationProvider"
+    );
   }
   return ctx;
 };

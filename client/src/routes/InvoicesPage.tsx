@@ -43,14 +43,26 @@ export const InvoicesPage = () => {
   return (
     <>
       <BasicTable orders={orders} />
-      <BasicSelect
-        orders={orders}
-        setSelected={setSelected}
-        selected={selected}
-      />
-      <Button variant="outlined" onClick={() => handlePay(selected)}>
-        ROZLICZ
-      </Button>
+      <section
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <BasicSelect
+          orders={orders}
+          setSelected={setSelected}
+          selected={selected}
+        />
+        <Button
+          variant="outlined"
+          onClick={() => handlePay(selected)}
+          style={{ minWidth: "49%" }}
+        >
+          ROZLICZ
+        </Button>
+      </section>
     </>
   );
 };

@@ -14,7 +14,6 @@ import { add } from "../../store/orderSlice";
 import { RootState } from "../../store/store";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNotificationContext } from "../../utils/NotificationContext";
-import { addClient } from "../../api/clients";
 import { changeOrderStatus } from "../../api/orders";
 
 export const DataTable = ({ orders }: { orders: Order[] }) => {

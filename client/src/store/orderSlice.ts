@@ -14,7 +14,10 @@ export const moneySlice = createSlice({
   initialState,
   reducers: {
     add: (state, action: PayloadAction<Order>) => {
-      state.push({ id: action.payload.id, tytul: action.payload.tytul });
+      state.push({
+        id: String(action.payload.id),
+        tytul: action.payload.tytul,
+      });
     },
     pay: (state, action: PayloadAction<string>) => {
       state = state.splice(

@@ -5,11 +5,15 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { OrderSlice } from "../../store/orderSlice";
 
-export default function BasicTable({ orders }) {
+export default function BasicTable({ orders }: { orders: OrderSlice[] }) {
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <TableContainer
+      component={Paper}
+      style={{ marginTop: "10px", marginBottom: "15px" }}
+    >
+      <Table sx={{ minWidth: 300 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>ID</TableCell>
@@ -19,7 +23,7 @@ export default function BasicTable({ orders }) {
         <TableBody>
           {orders.map(
             (order) =>
-              order.id?.length > 0 && (
+              String(order.id)?.length > 0 && (
                 <TableRow
                   key={order.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

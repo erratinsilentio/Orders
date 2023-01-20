@@ -2,6 +2,7 @@ import React, { useContext, useRef } from "react";
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useNotificationContext } from "./NotificationContext";
+import { loginForm, registerForm } from "./userSchema";
 
 export type User = {
   email: string;
@@ -9,11 +10,20 @@ export type User = {
   password: string;
 };
 
-const UserContext = createContext(undefined);
+interface Value {
+  users: User[];
+  addNewUser: (user: registerForm | User) => void;
+  logIn: (user: loginForm) => void;
+  logOut: () => void;
+  isLoggedIn: boolean | null;
+  loggedUser: React.MutableRefObject<{} | User>;
+}
+
+const UserContext = createContext<Value | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [users, setUsers] = useState<User[] | []>([]);
-  const [isLoggedIn, setIsLoggedIn] = useState<any>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
   const loggedUser = useRef<User | {}>({});
 
   const { setSuccess, setError } = useNotificationContext();
@@ -33,12 +43,13 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     navigate("/");
   };
 
-  const logIn = (user: User) => {
+  const logIn = (user: loginForm) => {
     console.log("logging in...");
     if (isLoggedIn) return;
 
     const logger = users.find(
-      (person) => person.login === user.login && person.password === user.password
+      (person) =>
+        person.login === user.login && person.password === user.password
     );
 
     if (logger) {
@@ -55,7 +66,9 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <UserContext.Provider value={{ users, addNewUser, logIn, logOut, isLoggedIn, loggedUser }}>
+    <UserContext.Provider
+      value={{ users, addNewUser, logIn, logOut, isLoggedIn, loggedUser }}
+    >
       {children}
     </UserContext.Provider>
   );

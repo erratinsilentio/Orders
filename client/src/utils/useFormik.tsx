@@ -1,18 +1,19 @@
 import { useFormik } from "formik";
 import { AddClientForm, addClientValidationSchema } from "./clientSchema";
-import { addClient, updateClient } from "../api/clients";
-import { Client } from "../data";
+import { Client, Order } from "../data";
 import { loginForm, registerForm } from "./userSchema";
 import { loginValidationSchema, registerValidationSchema } from "./userSchema";
 import { AddOrderForm, orderSchema } from "./orderSchema";
 import { UseMutationResult } from "@tanstack/react-query";
 import { User } from "./UserContext";
 import { moneyForm, moneyValidationSchema } from "./moneySchema";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deposit, withdraw } from "../store/moneySlice";
 import { useNotificationContext } from "./NotificationContext";
 
-export const addClientFormik = (mutation: UseMutationResult) => {
+export const addClientFormik = (
+  mutation: UseMutationResult<Client, unknown, Client, unknown>
+) => {
   const formik = useFormik<AddClientForm>({
     initialValues: {
       imie: "",
@@ -35,7 +36,7 @@ export const addClientFormik = (mutation: UseMutationResult) => {
 
 export const updateClientFormik = (
   client: Client,
-  mutation: UseMutationResult
+  mutation: UseMutationResult<any, unknown, Client, unknown>
 ) => {
   const formik = useFormik<AddClientForm>({
     initialValues: {
@@ -64,7 +65,7 @@ export const loginActionFormik = (logIn: (user: User) => void) => {
       password: "",
     },
     validationSchema: loginValidationSchema,
-    onSubmit: (values) => {
+    onSubmit: (values: loginForm) => {
       logIn(values);
     },
   });
@@ -79,14 +80,16 @@ export const registerActionFormik = (addUser: (user: User) => void) => {
       password: "",
     },
     validationSchema: registerValidationSchema,
-    onSubmit: (values: User | registerForm) => {
+    onSubmit: (values: registerForm) => {
       addUser(values);
     },
   });
   return formik;
 };
 
-export const addOrderFormik = (mutation: UseMutationResult) => {
+export const addOrderFormik = (
+  mutation: UseMutationResult<any, unknown, Order, unknown>
+) => {
   const formik = useFormik<AddOrderForm>({
     initialValues: {
       telefon: "",

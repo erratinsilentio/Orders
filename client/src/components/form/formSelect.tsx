@@ -11,7 +11,8 @@ import { useThemeContext } from "../../utils/ThemeContext";
 type Props = {
   accessor: string;
   formik: FormikProps<any>;
-  data: Client[];
+  data: Client[] | undefined;
+  className: string;
 };
 
 export const FormSelect: React.FC<Props> = ({ accessor, formik, data }) => {
@@ -19,7 +20,11 @@ export const FormSelect: React.FC<Props> = ({ accessor, formik, data }) => {
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel sx={{ color: `${theme === "dark" ? "var(--primary)" : "var(--font)"}` }}>
+        <InputLabel
+          sx={{
+            color: `${theme === "dark" ? "var(--primary)" : "var(--font)"}`,
+          }}
+        >
           {accessor}
         </InputLabel>
         <Select

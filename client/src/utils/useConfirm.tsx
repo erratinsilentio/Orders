@@ -2,7 +2,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { openModal, closeModal } from "../store/modalSlice";
 import { RootState } from "../store/store";
 
-let resolveCallback;
+let resolveCallback: (arg0: boolean) => void;
+
 function useConfirm() {
   const confirmState = useSelector((state: RootState) => state.modal.show);
   const dispatch = useDispatch();
