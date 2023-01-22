@@ -86,7 +86,7 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
                         {client.orders &&
                           client.orders.map((order) => (
                             <TableRow
-                              key={order.id}
+                              key={order}
                               sx={{
                                 "&:last-child td, &:last-child th": {
                                   border: 0,
@@ -94,8 +94,8 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
                               }}
                             >
                               <TableCell component="th" scope="row">
-                                <Link to={`/orders/${order.id}`}>
-                                  {"#" + order.id}
+                                <Link to={`/orders/${order}`}>
+                                  {"#" + order}
                                 </Link>
                               </TableCell>
                             </TableRow>

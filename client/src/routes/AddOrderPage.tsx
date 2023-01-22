@@ -23,12 +23,12 @@ export const AddOrderPage = () => {
   const mutation = useMutation(
     async (values: Order) => {
       return addOrder(values).then((order) =>
-        updateClientsOrders(values.telefon, order)
+        updateClientsOrders(values.telefon, values)
       );
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(["clients"]);
+        queryClient.invalidateQueries(["clients", "orders"]);
         setSuccess();
       },
       onError: () => {
