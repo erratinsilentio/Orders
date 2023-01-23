@@ -23,7 +23,7 @@ export const AddOrderPage = () => {
   const mutation = useMutation(
     async (values: Order) => {
       return addOrder(values).then((order) =>
-        updateClientsOrders(values.telefon, values)
+        updateClientsOrders(values.telefon, order.id)
       );
     },
     {

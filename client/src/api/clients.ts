@@ -1,7 +1,6 @@
 import { red } from "@mui/material/colors";
 import { Order, Client } from "../data";
-import { supabase } from "../main";
-import { getOrderByTelephone } from "./orders";
+import { supabase } from "../Supabase";
 
 export const getClient = async (id: string | number) => {
   let { data: clients, error } = await supabase
@@ -46,27 +45,18 @@ export const updateClient = async (id: string | number, client: Client) => {
   return data;
 };
 
-/////
-
 export const updateClientsOrders = async (tel: string, order: Order) => {
   const client = await getClientByTelephone(tel);
   const hisOrders = client.orders;
-  const newOrder = await getOrderByTelephone(tel);
-  const newOrderID = newOrder.id;
-  const newOrders = [...hisOrders, newOrderID];
-  console.log("new", newOrders);
-
-  const { data, error } = await supabase
-    .from("clients")
-    .update({ orders: newOrders })
-    .eq("tel", tel);
+  const newOrders = [...hisOrders, order];
+  const newClient = { ...client, orders: newOrders };
+  const data = updateClient(client.id, newClient);
   return data;
 };
 
 export const deleteClientsOrder = async (tel: string, order: Order) => {
   const res = await getClientByTelephone(tel);
-
-  const updatedOrders = res.orders.filter((o) => o.id !== order.id);
+  const updatedOrders = res.orders.filter((o) => o !== order.id);
   const updatedClient = { ...res, orders: updatedOrders };
   const data = await updateClient(res.id, updatedClient);
   return data;

@@ -1,5 +1,5 @@
 import { Status } from "../data";
-import { supabase } from "../main";
+import { supabase } from "../Supabase";
 
 type Order = {
   tytul: string;
@@ -33,14 +33,22 @@ export const getAllOrders = async () => {
 };
 
 export const addOrder = async (order: Order) => {
-  const { data, error } = await supabase.from("orders").insert([order]);
-  return data;
+  const { data, error } = await supabase
+    .from("orders")
+    .insert([order])
+    .select();
+  console.log(data);
+  return data[0];
 };
 
 export const deleteOrder = async (id: string | number) => {
-  const { data, error } = await supabase.from("orders").delete().eq("id", id);
+  const { data, error } = await supabase
+    .from("orders")
+    .delete()
+    .eq("id", id)
+    .select();
 
-  return data;
+  return data[0];
 };
 
 export const updateOrder = async (id: string | number, order: Order) => {
