@@ -55,8 +55,9 @@ export const updateOrder = async (id: string | number, order: Order) => {
   const { data, error } = await supabase
     .from("clients")
     .update(order)
-    .eq("id", id);
-  return data[0];
+    .eq("id", id)
+    .select();
+  return data;
 };
 
 export const changeOrderStatus = async (
@@ -66,6 +67,7 @@ export const changeOrderStatus = async (
   const { data, error } = await supabase
     .from("orders")
     .update({ status: status })
-    .eq("id", id);
-  return data[0];
+    .eq("id", id)
+    .select();
+  return data;
 };
