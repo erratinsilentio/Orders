@@ -26,7 +26,9 @@ export const SmallClientCard = ({ client }: { client: Client }) => {
           </Avatar>
         }
         title={formatName(client.imie + " " + client.nazwisko)}
-        subheader={client.miasto + ", " + formatPhone(client.telefon)}
+        subheader={
+          formatName(client.miasto) + ", " + formatPhone(client.telefon)
+        }
       />
     </Card>
   );

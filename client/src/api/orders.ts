@@ -37,7 +37,7 @@ export const addOrder = async (order: Order) => {
     .from("orders")
     .insert([order])
     .select();
-  console.log(data);
+
   return data[0];
 };
 
@@ -57,6 +57,7 @@ export const updateOrder = async (id: string | number, order: Order) => {
     .update(order)
     .eq("id", id)
     .select();
+
   return data;
 };
 
@@ -69,5 +70,6 @@ export const changeOrderStatus = async (
     .update({ status: status })
     .eq("id", id)
     .select();
+
   return data;
 };

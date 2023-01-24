@@ -39,7 +39,6 @@ export const FullOrderCard: React.FC<Props> = ({ order, client }) => {
     }
   );
 
-  //mutacje dodaj
   const showConfirm = async () => {
     const isConfirmed = await showModal();
 

@@ -101,7 +101,6 @@ export const addOrderFormik = (
     validationSchema: orderSchema,
     onSubmit: (values) => {
       mutation.mutate(values);
-      alert(JSON.stringify(values, null, 2));
     },
   });
 
