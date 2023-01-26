@@ -22,8 +22,8 @@ export const InvoicesPage = () => {
     async (values: string) => {
       return getOrder(values).then((order) =>
         changeOrderStatus(order.id, "payed").then((payedOrder) => {
-          dispatch(deposit(payedOrder.kwota));
-          dispatch(pay(payedOrder.id));
+          dispatch(deposit(payedOrder[0].kwota));
+          dispatch(pay(payedOrder[0].id));
         })
       );
     },

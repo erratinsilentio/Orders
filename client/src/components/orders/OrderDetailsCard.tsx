@@ -4,13 +4,11 @@ import style from "./orderDetails.module.css";
 import { DataBox } from "../card/Box";
 import { formatName } from "../../utils/formatName";
 import Button from "@mui/material/Button";
-import { useModalContext } from "../../utils/ModalContext";
-import { useCallback } from "react";
 import { deleteOrder } from "../../api/orders";
 import { deleteClientsOrder } from "../../api/clients";
 import { useNotificationContext } from "../../utils/NotificationContext";
-import { setDefaultResultOrder } from "dns";
 import useConfirm from "../../utils/useConfirm";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 type Props = {
   order: Order;
@@ -18,23 +16,35 @@ type Props = {
 };
 
 export const FullOrderCard: React.FC<Props> = ({ order, client }) => {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { showModal } = useConfirm();
   const { setSuccess, setError } = useNotificationContext();
 
+  const mutation = useMutation(
+    async (values: Order) => {
+      return deleteOrder(values.id).then((data) => {
+        deleteClientsOrder(data.telefon, data);
+      });
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["clients", "orders", "order"]);
+        setSuccess();
+        navigate("/orders");
+      },
+      onError: () => {
+        setError();
+      },
+    }
+  );
+
+  //mutacje dodaj
   const showConfirm = async () => {
     const isConfirmed = await showModal();
 
     if (isConfirmed) {
-      deleteOrder(order.id)
-        .then((data) => {
-          deleteClientsOrder(data.telefon, data);
-        })
-        .then(() => {
-          setSuccess();
-          navigate("/orders");
-        })
-        .catch(setError);
+      mutation.mutate(order);
     }
   };
 

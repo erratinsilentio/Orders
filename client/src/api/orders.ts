@@ -1,4 +1,5 @@
 import { Status } from "../data";
+import { supabase } from "../Supabase";
 
 type Order = {
   tytul: string;
@@ -9,44 +10,53 @@ type Order = {
 };
 
 export const getOrder = async (id: string | number) => {
-  const response = await fetch(`http://localhost:3000/orders/${id}`);
-  const data = await response.json();
-  return data;
+  let { data: orders, error } = await supabase
+    .from("orders")
+    .select()
+    .eq("id", id);
+
+  return orders[0];
+};
+
+export const getOrderByTelephone = async (tel: string | number) => {
+  let { data: orders, error } = await supabase
+    .from("orders")
+    .select()
+    .eq("telefon", tel);
+
+  return orders[0];
 };
 
 export const getAllOrders = async () => {
-  const response = await fetch(`http://localhost:3000/orders/`);
-  const data = await response.json();
-  return data;
+  let { data: orders, error } = await supabase.from("orders").select();
+  return orders;
 };
 
 export const addOrder = async (order: Order) => {
-  const newOrder = { ...order, status: "new" };
-
-  const response = await fetch(`http://localhost:3000/orders`, {
-    method: "POST",
-    headers: { "Content-type": "application/json;charset=UTF-8" },
-    body: JSON.stringify(newOrder),
-  });
-  const data = await response.json();
-  return data;
+  const { data, error } = await supabase
+    .from("orders")
+    .insert([order])
+    .select();
+  console.log(data);
+  return data[0];
 };
 
 export const deleteOrder = async (id: string | number) => {
-  const response = await fetch(`http://localhost:3000/orders/${id}`, {
-    method: "DELETE",
-  });
-  const data = await response.json();
-  return data;
+  const { data, error } = await supabase
+    .from("orders")
+    .delete()
+    .eq("id", id)
+    .select();
+
+  return data[0];
 };
 
 export const updateOrder = async (id: string | number, order: Order) => {
-  const response = await fetch(`http://localhost:3000/orders/${id}`, {
-    method: "PUT",
-    headers: { "Content-type": "application/json;charset=UTF-8" },
-    body: JSON.stringify(order),
-  });
-  const data = await response.json();
+  const { data, error } = await supabase
+    .from("clients")
+    .update(order)
+    .eq("id", id)
+    .select();
   return data;
 };
 
@@ -54,8 +64,10 @@ export const changeOrderStatus = async (
   id: string | number,
   status: Status
 ) => {
-  const order = await getOrder(id);
-  const updatedOrder = { ...order, status: status };
-  const response = await updateOrder(id, updatedOrder);
-  return response;
+  const { data, error } = await supabase
+    .from("orders")
+    .update({ status: status })
+    .eq("id", id)
+    .select();
+  return data;
 };
