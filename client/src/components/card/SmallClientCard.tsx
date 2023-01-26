@@ -11,7 +11,7 @@ export const SmallClientCard = ({ client }: { client: Client }) => {
   return (
     <Card
       className={style.container}
-      style={{ marginBottom: "20px", backgroundColor: "#f0f9ff" }}
+      sx={{ marginBottom: "20px", backgroundColor: "#f0f9ff" }}
     >
       <CardHeader
         avatar={

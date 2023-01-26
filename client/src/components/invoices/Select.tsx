@@ -28,7 +28,7 @@ export function BasicSelect({
         >
           {orders.map(
             (order) =>
-              String(order.id)?.length > 0 && (
+              order && (
                 <MenuItem value={order.id} key={order.id}>
                   {order.id}
                 </MenuItem>

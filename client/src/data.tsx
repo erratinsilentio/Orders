@@ -1,7 +1,7 @@
 export type Status = "new" | "awaiting" | "payed";
 
 export interface Order {
-  id?: string | number;
+  id: string;
   tytul: string;
   opis: string;
   ilosc: string | number;
@@ -11,7 +11,7 @@ export interface Order {
 }
 
 export interface Client {
-  id?: string | number;
+  id: string;
   imie: string;
   nazwisko: string;
   ulica: string;

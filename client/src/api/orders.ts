@@ -10,21 +10,23 @@ type Order = {
 };
 
 export const getOrder = async (id: string | number) => {
-  let { data: orders, error } = await supabase
+  let { data: order, error } = await supabase
     .from("orders")
     .select()
-    .eq("id", id);
+    .eq("id", id)
+    .single();
 
-  return orders[0];
+  return order;
 };
 
 export const getOrderByTelephone = async (tel: string | number) => {
-  let { data: orders, error } = await supabase
+  let { data: order, error } = await supabase
     .from("orders")
     .select()
-    .eq("telefon", tel);
+    .eq("telefon", tel)
+    .single();
 
-  return orders[0];
+  return order;
 };
 
 export const getAllOrders = async () => {
@@ -36,9 +38,10 @@ export const addOrder = async (order: Order) => {
   const { data, error } = await supabase
     .from("orders")
     .insert([order])
-    .select();
+    .select()
+    .single();
 
-  return data[0];
+  return data;
 };
 
 export const deleteOrder = async (id: string | number) => {
@@ -46,9 +49,10 @@ export const deleteOrder = async (id: string | number) => {
     .from("orders")
     .delete()
     .eq("id", id)
-    .select();
+    .select()
+    .single();
 
-  return data[0];
+  return data;
 };
 
 export const updateOrder = async (id: string | number, order: Order) => {

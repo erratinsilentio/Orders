@@ -2,21 +2,23 @@ import { Order, Client } from "../data";
 import { supabase } from "../Supabase";
 
 export const getClient = async (id: string | number) => {
-  let { data: clients, error } = await supabase
+  let { data: client, error } = await supabase
     .from("clients")
     .select("*")
-    .eq("id", id);
+    .eq("id", id)
+    .single();
 
-  return clients[0] as Client[];
+  return client;
 };
 
 export const getClientByTelephone = async (tel: string) => {
-  let { data: clients, error } = await supabase
+  let { data: client, error } = await supabase
     .from("clients")
     .select("*")
-    .eq("telefon", tel);
+    .eq("telefon", tel)
+    .single();
 
-  return clients[0];
+  return client;
 };
 
 export const getAllClients = async () => {
