@@ -61,8 +61,8 @@ export const FullClientCard: React.FC<Props> = ({ client }) => {
         </div>
         <div className={style.right}>
           <p>{formatName(client.imie + " " + client.nazwisko)}</p>
-          <p>{"ul. " + client.ulica}</p>
-          <p>{client.miasto + " " + client.kod}</p>
+          <p>{"ul. " + formatName(client.ulica)}</p>
+          <p>{formatName(client.miasto) + ", " + client.kod}</p>
           <p>{formatPhone(client.telefon)}</p>
           <p>
             <Accordion className={style.accord}>
