@@ -37,8 +37,9 @@ export const EditClientPage = () => {
 
   if (isLoading) return <p>loading...</p>;
   if (error) return <p>loading...</p>;
+  if (!client) return <p>Blad ladowania danych</p>;
 
-  const formik = updateClientFormik(client as Client, mutation);
+  const formik = updateClientFormik(client, mutation);
 
   return (
     <form onSubmit={formik.handleSubmit} className={style.form}>

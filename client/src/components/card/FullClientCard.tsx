@@ -23,7 +23,7 @@ import useConfirm from "../../utils/useConfirm";
 import { useNotificationContext } from "../../utils/NotificationContext";
 
 type Props = {
-  client: Client | undefined;
+  client: Client;
 };
 
 export const FullClientCard: React.FC<Props> = ({ client }) => {

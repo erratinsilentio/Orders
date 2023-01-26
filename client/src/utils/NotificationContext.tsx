@@ -42,7 +42,7 @@ export const NotificationProvider = ({
 
   return (
     <NotificationContext.Provider
-      value={{ notification, message, setSuccess, setError } as Value}
+      value={{ notification, message, setSuccess, setError }}
     >
       {children}
     </NotificationContext.Provider>

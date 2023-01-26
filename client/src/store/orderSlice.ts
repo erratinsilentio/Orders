@@ -2,10 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { Order } from "../data";
 
-export interface OrderSlice {
-  id: string;
-  tytul: string;
-}
+export type OrderSlice = Pick<Order, "id" | "tytul">;
 
 const initialState: OrderSlice[] = [];
 
@@ -13,7 +10,7 @@ export const moneySlice = createSlice({
   name: "orders",
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<Order>) => {
+    add: (state, action: PayloadAction<OrderSlice>) => {
       console.log(action.payload);
       state.push({
         id: String(action.payload[0].id),

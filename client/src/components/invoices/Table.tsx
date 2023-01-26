@@ -27,7 +27,7 @@ export default function BasicTable({ orders }: { orders: OrderSlice[] }) {
         <TableBody>
           {orders.map(
             (order) =>
-              String(order.id)?.length > 0 && (
+              order.id && (
                 <TableRow
                   key={order.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
