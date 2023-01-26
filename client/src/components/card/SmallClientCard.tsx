@@ -9,7 +9,10 @@ import { formatPhone } from "../../utils/formatPhone";
 
 export const SmallClientCard = ({ client }: { client: Client }) => {
   return (
-    <Card className={style.container} style={{ marginBottom: "20px" }}>
+    <Card
+      className={style.container}
+      style={{ marginBottom: "20px", backgroundColor: "#f0f9ff" }}
+    >
       <CardHeader
         avatar={
           <Avatar

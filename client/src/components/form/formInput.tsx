@@ -2,7 +2,6 @@ import TextField from "@mui/material/TextField";
 import { color } from "@mui/system";
 import { FormikProps } from "formik";
 import { useThemeContext } from "../../utils/ThemeContext";
-import style from "./formInput.styles.css";
 
 export function FormInput<T>({
   formik,
@@ -17,7 +16,9 @@ export function FormInput<T>({
       <TextField
         sx={{
           input: { color: "var(--font)" },
-          label: { color: `${theme === "dark" ? "var(--primary)" : "var(--font)"}` },
+          label: {
+            color: `${theme === "dark" ? "var(--primary)" : "var(--font)"}`,
+          },
         }}
         style={{
           width: "300px",

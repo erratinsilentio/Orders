@@ -19,20 +19,31 @@ export const ClientsPage = () => {
     <div className={style.container}>
       <section className={style.action}>
         <Button variant="outlined" style={{ marginRight: "25px" }}>
-          <Link to={"/clients/add"} className={`${style.link} ${style.addLink}`}>
+          <Link
+            to={"/clients/add"}
+            className={`${style.link} ${style.addLink}`}
+          >
             Add Client
           </Link>
         </Button>
         <TextField
-          sx={{ border: `${theme === "dark" && "1px solid var(--primary)"}`, borderRadius: "5px" }}
+          sx={{
+            border: `${theme === "dark" && "1px solid var(--primary)"}`,
+            borderRadius: "5px",
+          }}
           id="outlined-basic"
           label="Search"
           variant="outlined"
         />
       </section>
       <section className={style.cards}>
-        {data.map((client) => (
-          <Link to={`/clients/${client.id}`} state={client} className={style.link} key={client.id}>
+        {data?.map((client) => (
+          <Link
+            to={`/clients/${client.id}`}
+            state={client}
+            className={style.link}
+            key={client.id}
+          >
             <SmallClientCard key={client.id} client={client} />
           </Link>
         ))}

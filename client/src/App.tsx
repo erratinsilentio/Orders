@@ -12,9 +12,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { UserProvider } from "./utils/UserContext";
 import { useThemeContext } from "./utils/ThemeContext";
 import { Notification } from "./components/modal/Notification";
-import { useNotificationContext } from "./utils/NotificationContext";
 import MuiModal from "./components/modal/MuiModal";
-import { ModalProvider } from "./utils/ModalContext";
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache(),
@@ -23,10 +21,6 @@ const queryClient = new QueryClient({
 function App() {
   let location = useLocation();
   const { theme } = useThemeContext();
-
-  theme === "dark"
-    ? document.documentElement.style.setProperty("--bodyColor", "#18181b")
-    : document.documentElement.style.setProperty("--bodyColor", "#e0f2fe");
 
   return (
     <UserProvider>
@@ -38,10 +32,8 @@ function App() {
           <ResponsiveAppBar />
           {location.pathname === "/" && <LoginForm />}
           <Notification />
-          <ModalProvider>
-            <MuiModal />
-            <Outlet />
-          </ModalProvider>
+          <MuiModal />
+          <Outlet />
         </div>
       </QueryClientProvider>
     </UserProvider>

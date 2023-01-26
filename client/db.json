@@ -14,13 +14,19 @@
           "id": "1863",
           "tytul": "Gitara",
           "ilosc": "4",
-          "opis": "Wow"
+          "opis": "Mozna zagrać"
         },
         {
           "id": "1866",
           "tytul": "Cygaro",
           "ilosc": "14",
           "opis": "Uwaga"
+        },
+        {
+          "id": "1867",
+          "tytul": "Gruszka",
+          "ilosc": "1",
+          "opis": "Bardzo smaczny owoc"
         }
       ],
       "id": 4
@@ -40,6 +46,12 @@
           "tytul": "Spodnie",
           "ilosc": "5",
           "opis": "Wygodne"
+        },
+        {
+          "id": "j7lQfYD",
+          "tytul": "kinder bueno",
+          "ilosc": "2",
+          "opis": "czekoladowy batonik"
         }
       ]
     }
@@ -50,22 +62,45 @@
       "tytul": "Spodnie",
       "ilosc": "5",
       "opis": "Wygodne",
-      "telefon": "+48119938028"
+      "telefon": "+48119938028",
+      "kwota": 200,
+      "status": "new"
     },
     {
       "id": "1863",
       "tytul": "Gitara",
       "ilosc": "4",
-      "opis": "Wow",
-      "telefon": "+48847948735"
+      "opis": "Mozna zagrać",
+      "telefon": "+48847948735",
+      "kwota": 400,
+      "status": "new"
     },
     {
       "id": "1866",
       "tytul": "Cygaro",
       "ilosc": "14",
       "opis": "Uwaga",
-      "telefon": "+48847948735"
+      "telefon": "+48847948735",
+      "kwota": 150,
+      "status": "new"
+    },
+    {
+      "id": "1867",
+      "tytul": "Gruszka",
+      "ilosc": "1",
+      "opis": "Bardzo smaczny owoc",
+      "telefon": "+48847948735",
+      "kwota": 10,
+      "status": "new"
+    },
+    {
+      "telefon": "+48119938028",
+      "tytul": "kinder bueno",
+      "opis": "czekoladowy batonik",
+      "ilosc": "2",
+      "kwota": "20",
+      "status": "new",
+      "id": "j7lQfYD"
     }
   ]
 }
-

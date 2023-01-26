@@ -38,7 +38,7 @@ export const EditClientPage = () => {
   if (isLoading) return <p>loading...</p>;
   if (error) return <p>loading...</p>;
 
-  const formik = updateClientFormik(client, mutation);
+  const formik = updateClientFormik(client as Client, mutation);
 
   return (
     <form onSubmit={formik.handleSubmit} className={style.form}>
@@ -49,7 +49,11 @@ export const EditClientPage = () => {
       </section>
       <section className={style.buttons}>
         <Link to={`/clients/${params.id}`} className={style.link}>
-          <Button onClick={formik.handleSubmit} variant="outlined" className={style.btn}>
+          <Button
+            onClick={formik.handleSubmit}
+            variant="outlined"
+            className={style.btn}
+          >
             Update
           </Button>
         </Link>
