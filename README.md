@@ -73,6 +73,13 @@ Feel free to play with this code by yourself!
 ## 🚀 Deployment <a name = "deployment"></a>
 
 - Still in progress...
+  <img href="https://ibb.co/Sv16XLm" />
+  <img href="https://ibb.co/BCSSTGN" />
+  <img href="https://ibb.co/WD3KPs4" />
+  <img href="https://ibb.co/GT76FHz" />
+  <img href="https://ibb.co/L03NBgg" />
+  <img href="https://ibb.co/tZ8gJ5F" />
+  <img href="https://ibb.co/drckp8G" />
 
 ## ⛏️ Technologies <a name = "built_using"></a>
 
