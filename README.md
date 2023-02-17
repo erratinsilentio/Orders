@@ -73,13 +73,14 @@ Feel free to play with this code by yourself!
 ## 🚀 Deployment <a name = "deployment"></a>
 
 - Still in progress...
-  <img src="https://ibb.co/Sv16XLm" />
-  <img src="https://ibb.co/BCSSTGN" />
-  <img src="https://ibb.co/WD3KPs4" />
-  <img src="https://ibb.co/GT76FHz" />
-  <img src="https://ibb.co/L03NBgg" />
-  <img src="https://ibb.co/tZ8gJ5F" />
-  <img src="https://ibb.co/drckp8G" />
+  <img src="https://res.cloudinary.com/dlj4gyfwy/image/upload/v1676637926/orders/Zrzut_ekranu_2023-02-17_o_13.36.37_jqotmc.png" />
+  <img src="https://res.cloudinary.com/dlj4gyfwy/image/upload/v1676637926/orders/Zrzut_ekranu_2023-02-17_o_13.36.42_n3fiox.png" />
+  <img src="https://res.cloudinary.com/dlj4gyfwy/image/upload/v1676637925/orders/Zrzut_ekranu_2023-02-17_o_13.37.12_tve746.png" />
+  <img src="https://res.cloudinary.com/dlj4gyfwy/image/upload/v1676637925/orders/Zrzut_ekranu_2023-02-17_o_13.37.37_d5ijne.png" />
+  <img src="https://res.cloudinary.com/dlj4gyfwy/image/upload/v1676637925/orders/Zrzut_ekranu_2023-02-17_o_13.37.05_cmhdtk.png" />
+  <img src="https://res.cloudinary.com/dlj4gyfwy/image/upload/v1676637925/orders/Zrzut_ekranu_2023-02-17_o_13.36.52_ripive.png" />
+  <img src="https://res.cloudinary.com/dlj4gyfwy/image/upload/v1676637925/orders/Zrzut_ekranu_2023-02-17_o_13.37.24_hoe2gk.png" />
+  <img src="https://res.cloudinary.com/dlj4gyfwy/image/upload/v1676637925/orders/Zrzut_ekranu_2023-02-17_o_13.37.43_iqgb9j.png" />
 
 ## ⛏️ Technologies <a name = "built_using"></a>
 
