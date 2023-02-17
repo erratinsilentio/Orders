@@ -59,7 +59,7 @@ export const updateClientsOrders = async (tel: string, order: Order) => {
 
 export const deleteClientsOrder = async (tel: string, order: Order) => {
   const res = await getClientByTelephone(tel);
-  const updatedOrders = res.orders.filter((o) => o !== order.id);
+  const updatedOrders = res.orders.filter((o: any) => o !== order.id);
   const updatedClient = { ...res, orders: updatedOrders };
   const data = await updateClient(res.id, updatedClient);
 

@@ -1,0 +1,12 @@
+import { jsx as _jsx } from "react/jsx-runtime";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { RouterProvider } from "react-router-dom";
+import ErrorBoundary from "./utils/ErrorBoundary";
+import { ThemeProvider } from "./utils/ThemeContext";
+import { NotificationProvider } from "./utils/NotificationContext";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import { router } from "./utils/router";
+ReactDOM.createRoot(document.getElementById("root")).render(_jsx(React.StrictMode, { children: _jsx(NotificationProvider, { children: _jsx(Provider, { store: store, children: _jsx(ErrorBoundary, { children: _jsx(ThemeProvider, { children: _jsx(RouterProvider, { router: router }) }) }) }) }) }));
